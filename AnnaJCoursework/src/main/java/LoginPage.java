@@ -85,6 +85,11 @@ public class LoginPage extends javax.swing.JFrame {
 
         btnForgorPassword.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnForgorPassword.setText("Forgot Password");
+        btnForgorPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnForgorPasswordActionPerformed(evt);
+            }
+        });
 
         lblError.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblError.setForeground(new java.awt.Color(255, 0, 0));
@@ -182,6 +187,12 @@ public class LoginPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnForgorPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnForgorPasswordActionPerformed
+        // TODO add your handling code here:
+        new ForgorPassword().setVisible(true);
+            this.dispose();
+    }//GEN-LAST:event_btnForgorPasswordActionPerformed
 
     /**
      * @param args the command line arguments
