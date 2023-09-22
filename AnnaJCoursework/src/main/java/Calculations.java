@@ -34,10 +34,11 @@ public class Calculations extends javax.swing.JFrame {
         cbVal2 = new javax.swing.JComboBox<>();
         tfVal2 = new javax.swing.JTextField();
         lblResult = new javax.swing.JLabel();
-        tfResult = new javax.swing.JTextField();
         lblUnits = new javax.swing.JLabel();
         lblExplanation = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
+        lblResultResult = new javax.swing.JLabel();
+        lblExplanationText = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,10 +74,8 @@ public class Calculations extends javax.swing.JFrame {
         lblResult.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lblResult.setText("Result:");
 
-        tfResult.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-
         lblUnits.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblUnits.setText("Units");
+        lblUnits.setText("<units>");
 
         lblExplanation.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblExplanation.setText("Explanation:");
@@ -88,6 +87,12 @@ public class Calculations extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
+
+        lblResultResult.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblResultResult.setText("<result>");
+
+        lblExplanationText.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblExplanationText.setText("<explanation>");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,24 +108,27 @@ public class Calculations extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(lblExplanation))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(lblResult)
-                                .addGap(18, 18, 18)
-                                .addComponent(tfResult))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(lblVal1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cbVal1, 0, 224, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(lblVal2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cbVal2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(cbVal2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(lblResult)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblResultResult)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(tfVal1)
                             .addComponent(tfVal2)
                             .addComponent(lblUnits, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBack)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnBack)
+                            .addComponent(lblExplanationText))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -138,14 +146,16 @@ public class Calculations extends javax.swing.JFrame {
                     .addComponent(lblVal2)
                     .addComponent(cbVal2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfVal2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
+                .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblResult)
-                    .addComponent(tfResult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUnits))
+                    .addComponent(lblUnits)
+                    .addComponent(lblResultResult))
                 .addGap(18, 18, 18)
                 .addComponent(lblExplanation)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
+                .addGap(19, 19, 19)
+                .addComponent(lblExplanationText)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
                 .addComponent(btnBack)
                 .addContainerGap())
         );
@@ -200,11 +210,12 @@ public class Calculations extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbVal2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblExplanation;
+    private javax.swing.JLabel lblExplanationText;
     private javax.swing.JLabel lblResult;
+    private javax.swing.JLabel lblResultResult;
     private javax.swing.JLabel lblUnits;
     private javax.swing.JLabel lblVal1;
     private javax.swing.JLabel lblVal2;
-    private javax.swing.JTextField tfResult;
     private javax.swing.JTextField tfVal1;
     private javax.swing.JTextField tfVal2;
     // End of variables declaration//GEN-END:variables
