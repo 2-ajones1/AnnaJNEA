@@ -58,19 +58,24 @@ public class Periodicity extends javax.swing.JFrame {
         lblGroup.setText("Group:");
 
         cbGroup.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbGroup.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbGroup.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Group 1", "Group 2", "Group 3", "Group 4", "Group 5", "Group 6", "Group 7", "Group 8" }));
 
         lblIon.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lblIon.setText("Ion:");
 
         cbIon.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbIon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbIon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No Ion Selected", "OH-", "CO3 2+", "SO4 2-" }));
+        cbIon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbIonActionPerformed(evt);
+            }
+        });
 
         lblProperty.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lblProperty.setText("Property:");
 
         cbProperty.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbProperty.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbProperty.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Melting Point", "Boiling Point", "Density", "Electronegativity", "Reactivity", "Solubility" }));
 
         lblFormulae.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lblFormulae.setText("How to work out formulae:");
@@ -161,6 +166,15 @@ public class Periodicity extends javax.swing.JFrame {
         new CalcsOrPeriod().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void cbIonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbIonActionPerformed
+        // TODO add your handling code here:
+        String selectedIon = String.valueOf(cbIon.getSelectedItem());
+        if (!(selectedIon.equals("No Ion Selected"))&& String.valueOf(cbGroup.getSelectedItem()).equals("Group 8")){
+            cbIon.setSelectedItem("No Ion Selected");
+            new DialogueBoxGrpAndIon().setVisible(true);
+        }
+    }//GEN-LAST:event_cbIonActionPerformed
 
     /**
      * @param args the command line arguments

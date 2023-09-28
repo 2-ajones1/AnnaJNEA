@@ -131,11 +131,15 @@
           <Font name="Arial" size="12" style="0"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+          <StringArray count="8">
+            <StringItem index="0" value="Group 1"/>
+            <StringItem index="1" value="Group 2"/>
+            <StringItem index="2" value="Group 3"/>
+            <StringItem index="3" value="Group 4"/>
+            <StringItem index="4" value="Group 5"/>
+            <StringItem index="5" value="Group 6"/>
+            <StringItem index="6" value="Group 7"/>
+            <StringItem index="7" value="Group 8"/>
           </StringArray>
         </Property>
       </Properties>
@@ -158,13 +162,16 @@
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+            <StringItem index="0" value="No Ion Selected"/>
+            <StringItem index="1" value="OH-"/>
+            <StringItem index="2" value="CO3 2+"/>
+            <StringItem index="3" value="SO4 2-"/>
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbIonActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -183,11 +190,13 @@
           <Font name="Arial" size="12" style="0"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+          <StringArray count="6">
+            <StringItem index="0" value="Melting Point"/>
+            <StringItem index="1" value="Boiling Point"/>
+            <StringItem index="2" value="Density"/>
+            <StringItem index="3" value="Electronegativity"/>
+            <StringItem index="4" value="Reactivity"/>
+            <StringItem index="5" value="Solubility"/>
           </StringArray>
         </Property>
       </Properties>
