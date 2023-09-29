@@ -37,7 +37,7 @@
                                   <Component id="lblIon" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblProperty" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="84" max="32767" attributes="0"/>
+                              <EmptySpace pref="81" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="cbGroup" pref="235" max="32767" attributes="0"/>
                                   <Component id="cbIon" max="32767" attributes="0"/>
@@ -45,7 +45,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="277" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="280" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="btnBack" min="-2" max="-2" attributes="0"/>
