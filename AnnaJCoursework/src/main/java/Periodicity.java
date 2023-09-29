@@ -59,6 +59,11 @@ public class Periodicity extends javax.swing.JFrame {
 
         cbGroup.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         cbGroup.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Group 1", "Group 2", "Group 3", "Group 4", "Group 5", "Group 6", "Group 7", "Group 8" }));
+        cbGroup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbGroupActionPerformed(evt);
+            }
+        });
 
         lblIon.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lblIon.setText("Ion:");
@@ -175,6 +180,15 @@ public class Periodicity extends javax.swing.JFrame {
             new DialogueBoxGrpAndIon().setVisible(true);
         }
     }//GEN-LAST:event_cbIonActionPerformed
+
+    private void cbGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbGroupActionPerformed
+        // TODO add your handling code here:
+        String selectedIon = String.valueOf(cbIon.getSelectedItem());
+        if (!(selectedIon.equals("No Ion Selected"))&& String.valueOf(cbGroup.getSelectedItem()).equals("Group 8")){
+            cbIon.setSelectedItem("No Ion Selected");
+            new DialogueBoxGrpAndIon().setVisible(true);
+        }
+    }//GEN-LAST:event_cbGroupActionPerformed
 
     /**
      * @param args the command line arguments
