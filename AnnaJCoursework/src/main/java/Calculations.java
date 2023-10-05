@@ -73,7 +73,7 @@ public class Calculations extends javax.swing.JFrame {
         lblVal1.setText("Value 1:");
 
         cbVal1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbVal1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "A", "Density / g dm^-3", "Ea / J mol^-1", "Energy / J", "Enthalpy change / J mol^-1", "Frequency / Hz", "k", "Mass / g", "Moles", "Mr", "Pressure / Pa", "Specific heat capacity /J g^-1 K^-1", "Temperature / K", "Volume /dm^3", "Wavelength / m" }));
+        cbVal1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Density / g dm^-3", "Energy / J", "Enthalpy change / J mol^-1", "Frequency / Hz", "Mass / g", "Moles", "Mr", "Pressure / Pa", "Specific heat capacity /J g^-1 K^-1", "Temperature / K", "Volume /dm^3", "Wavelength / m" }));
 
         tfVal1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
@@ -81,7 +81,7 @@ public class Calculations extends javax.swing.JFrame {
         lblVal2.setText("Value 2:");
 
         cbVal2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbVal2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "A", "Density / g dm^-3", "Ea / J mol^-1", "Energy / J", "Enthalpy change / J mol^-1", "Frequency / Hz", "k", "Mass / g", "Moles", "Mr", "Pressure / Pa", "Specific heat capacity /J g^-1 K^-1", "Temperature / K", "Volume /dm^3", "Wavelength / m" }));
+        cbVal2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Density / g dm^-3", "Energy / J", "Enthalpy change / J mol^-1", "Frequency / Hz", "Mass / g", "Moles", "Mr", "Pressure / Pa", "Specific heat capacity /J g^-1 K^-1", "Temperature / K", "Volume /dm^3", "Wavelength / m" }));
 
         tfVal2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
@@ -121,16 +121,16 @@ public class Calculations extends javax.swing.JFrame {
         lblValue6.setText("Value 6:");
 
         cbVal3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbVal3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "A", "Density / g dm^-3", "Ea / J mol^-1", "Energy / J", "Enthalpy change / J mol^-1", "Frequency / Hz", "k", "Mass / g", "Moles", "Mr", "Pressure / Pa", "Specific heat capacity /J g^-1 K^-1", "Temperature / K", "Volume /dm^3", "Wavelength / m" }));
+        cbVal3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Density / g dm^-3", "Energy / J", "Enthalpy change / J mol^-1", "Frequency / Hz", "Mass / g", "Moles", "Mr", "Pressure / Pa", "Specific heat capacity /J g^-1 K^-1", "Temperature / K", "Volume /dm^3", "Wavelength / m" }));
 
         cbVal4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbVal4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "A", "Density / g dm^-3", "Ea / J mol^-1", "Energy / J", "Enthalpy change / J mol^-1", "Frequency / Hz", "k", "Mass / g", "Moles", "Mr", "Pressure / Pa", "Specific heat capacity /J g^-1 K^-1", "Temperature / K", "Volume /dm^3", "Wavelength / m" }));
+        cbVal4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Density / g dm^-3", "Energy / J", "Enthalpy change / J mol^-1", "Frequency / Hz", "Mass / g", "Moles", "Mr", "Pressure / Pa", "Specific heat capacity /J g^-1 K^-1", "Temperature / K", "Volume /dm^3", "Wavelength / m" }));
 
         cbVal5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbVal5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "A", "Density / g dm^-3", "Ea / J mol^-1", "Energy / J", "Enthalpy change / J mol^-1", "Frequency / Hz", "k", "Mass / g", "Moles", "Mr", "Pressure / Pa", "Specific heat capacity /J g^-1 K^-1", "Temperature / K", "Volume /dm^3", "Wavelength / m" }));
+        cbVal5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Density / g dm^-3", "Ea / J mol^-1", "Energy / J", "Enthalpy change / J mol^-1", "Frequency / Hz", "Mass / g", "Moles", "Mr", "Pressure / Pa", "Specific heat capacity /J g^-1 K^-1", "Temperature / K", "Volume /dm^3", "Wavelength / m" }));
 
         cbVal6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbVal6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "A", "Density / g dm^-3", "Ea / J mol^-1", "Energy / J", "Enthalpy change / J mol^-1", "Frequency / Hz", "k", "Mass / g", "Moles", "Mr", "Pressure / Pa", "Specific heat capacity /J g^-1 K^-1", "Temperature / K", "Volume /dm^3", "Wavelength / m" }));
+        cbVal6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Density / g dm^-3", "Energy / J", "Enthalpy change / J mol^-1", "Frequency / Hz", "Mass / g", "Moles", "Mr", "Pressure / Pa", "Specific heat capacity /J g^-1 K^-1", "Temperature / K", "Volume /dm^3", "Wavelength / m" }));
 
         tfVal3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
@@ -141,7 +141,7 @@ public class Calculations extends javax.swing.JFrame {
         tfVal6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel1.setText("Select at least two values and type their numbers");
+        jLabel1.setText("Select your values and type their numbers");
 
         btnCalculate.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnCalculate.setText("Calculate");

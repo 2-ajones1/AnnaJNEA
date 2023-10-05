@@ -10,7 +10,7 @@
  */
 public class Calculator {
     
-    public static void calculateValues(double number1, double number2, String value1, String value2){
+    public static void calculateValues(double number1, double number2){
         
     }
     
