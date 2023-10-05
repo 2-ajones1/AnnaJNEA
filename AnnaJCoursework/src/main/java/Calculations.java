@@ -52,7 +52,7 @@ public class Calculations extends javax.swing.JFrame {
         tfVal5 = new javax.swing.JTextField();
         tfVal6 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnCalculate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,7 +73,7 @@ public class Calculations extends javax.swing.JFrame {
         lblVal1.setText("Value 1:");
 
         cbVal1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbVal1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbVal1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "A", "Density / g dm^-3", "Ea / J mol^-1", "Energy / J", "Enthalpy change / J mol^-1", "Frequency / Hz", "k", "Mass / g", "Moles", "Mr", "Pressure / Pa", "Specific heat capacity /J g^-1 K^-1", "Temperature / K", "Volume /dm^3", "Wavelength / m" }));
 
         tfVal1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
@@ -81,7 +81,7 @@ public class Calculations extends javax.swing.JFrame {
         lblVal2.setText("Value 2:");
 
         cbVal2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbVal2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbVal2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "A", "Density / g dm^-3", "Ea / J mol^-1", "Energy / J", "Enthalpy change / J mol^-1", "Frequency / Hz", "k", "Mass / g", "Moles", "Mr", "Pressure / Pa", "Specific heat capacity /J g^-1 K^-1", "Temperature / K", "Volume /dm^3", "Wavelength / m" }));
 
         tfVal2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
@@ -121,16 +121,16 @@ public class Calculations extends javax.swing.JFrame {
         lblValue6.setText("Value 6:");
 
         cbVal3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbVal3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbVal3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "A", "Density / g dm^-3", "Ea / J mol^-1", "Energy / J", "Enthalpy change / J mol^-1", "Frequency / Hz", "k", "Mass / g", "Moles", "Mr", "Pressure / Pa", "Specific heat capacity /J g^-1 K^-1", "Temperature / K", "Volume /dm^3", "Wavelength / m" }));
 
         cbVal4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbVal4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbVal4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "A", "Density / g dm^-3", "Ea / J mol^-1", "Energy / J", "Enthalpy change / J mol^-1", "Frequency / Hz", "k", "Mass / g", "Moles", "Mr", "Pressure / Pa", "Specific heat capacity /J g^-1 K^-1", "Temperature / K", "Volume /dm^3", "Wavelength / m" }));
 
         cbVal5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbVal5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbVal5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "A", "Density / g dm^-3", "Ea / J mol^-1", "Energy / J", "Enthalpy change / J mol^-1", "Frequency / Hz", "k", "Mass / g", "Moles", "Mr", "Pressure / Pa", "Specific heat capacity /J g^-1 K^-1", "Temperature / K", "Volume /dm^3", "Wavelength / m" }));
 
         cbVal6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbVal6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbVal6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "A", "Density / g dm^-3", "Ea / J mol^-1", "Energy / J", "Enthalpy change / J mol^-1", "Frequency / Hz", "k", "Mass / g", "Moles", "Mr", "Pressure / Pa", "Specific heat capacity /J g^-1 K^-1", "Temperature / K", "Volume /dm^3", "Wavelength / m" }));
 
         tfVal3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
@@ -143,8 +143,8 @@ public class Calculations extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel1.setText("Select at least two values and type their numbers");
 
-        jButton1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jButton1.setText("jButton1");
+        btnCalculate.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnCalculate.setText("Calculate");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -204,7 +204,7 @@ public class Calculations extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jButton1)
+                                        .addComponent(btnCalculate)
                                         .addGap(102, 102, 102))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblResult)
@@ -241,7 +241,7 @@ public class Calculations extends javax.swing.JFrame {
                     .addComponent(lblVal2)
                     .addComponent(cbVal2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfVal2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnCalculate))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblValue3)
@@ -322,13 +322,13 @@ public class Calculations extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnCalculate;
     private javax.swing.JComboBox<String> cbVal1;
     private javax.swing.JComboBox<String> cbVal2;
     private javax.swing.JComboBox<String> cbVal3;
     private javax.swing.JComboBox<String> cbVal4;
     private javax.swing.JComboBox<String> cbVal5;
     private javax.swing.JComboBox<String> cbVal6;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblExplanation;

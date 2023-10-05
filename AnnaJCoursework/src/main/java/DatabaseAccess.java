@@ -1,6 +1,7 @@
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 /*
@@ -75,5 +76,17 @@ public class DatabaseAccess {
         //UPDATE Users
         //SET UserEmail = <newEmail>
         //WHERE userID
+    }
+    
+    public static void getEquation(){
+        try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
+            try(Statement statement = con.createStatement()){
+                String sql = "<query>";
+                ResultSet rs = statement.executeQuery(sql);
+            }
+            con.close();
+        }catch (Exception e){
+            System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
+        }
     }
 }
