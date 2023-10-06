@@ -1,4 +1,5 @@
 
+import java.util.Random;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -54,10 +55,27 @@ public class DatabaseAccess {
         }
     }
     
-    public static void createUser(){
+    public static void createUser(String email, String username, String password, boolean student){
+        Random rand = new Random();
         //random gen userID
         //INSERT INTO Users
         //VALUES <userID>, Username, Password, Email, StudentorTeacher
+        String userID = "US";
+        for(int x = 0; x < 4; x++){
+            userID = userID + String.valueOf(rand.nextInt(10));
+        }
+        System.out.println(userID);
+        try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
+            String sqlStatement = ("INSERT INTO Users VALUES ('"+userID +"', '"+username+"', '"+password+"', '"+email+ "', " + student + ")");
+            System.out.println(sqlStatement);
+            try(Statement statement = con.createStatement()){
+                statement.execute(sqlStatement);
+                System.out.println("Success");
+            }
+            con.close();
+        }catch (Exception e){
+            System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
+        }
     }
     
     public static void deleteUser(){
