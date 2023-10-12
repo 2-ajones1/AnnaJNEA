@@ -34,7 +34,6 @@ public class HomePage extends javax.swing.JFrame {
         btnExamQs = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,8 +101,6 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("jLabel1");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,10 +126,6 @@ public class HomePage extends javax.swing.JFrame {
                         .addGap(172, 172, 172)
                         .addComponent(lblHomePage)
                         .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(271, 271, 271))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCalcsPeriod, btnExamQs, btnInfoPages});
@@ -153,9 +146,7 @@ public class HomePage extends javax.swing.JFrame {
                         .addComponent(btnInfoPages)
                         .addGap(54, 54, 54)
                         .addComponent(btnExamQs)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1)
-                        .addGap(0, 60, Short.MAX_VALUE))
+                        .addGap(0, 80, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnLogout)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -197,12 +188,8 @@ public class HomePage extends javax.swing.JFrame {
 
     private void btnExamQsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExamQsActionPerformed
         // TODO add your handling code here:
-        boolean connection = DatabaseAccess.sqlTestDBConnection();
-        if(connection == true){
-            jLabel1.setText("Yay! Database reached!");
-        }else{
-            jLabel1.setText("Oh dear");
-        }
+        new ExamQsMenu().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnExamQsActionPerformed
 
     private void btnAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccountActionPerformed
@@ -253,7 +240,6 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnInfoPages;
     private javax.swing.JButton btnLogout;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblHomePage;
     // End of variables declaration//GEN-END:variables
