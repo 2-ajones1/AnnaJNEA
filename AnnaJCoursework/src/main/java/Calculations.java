@@ -73,7 +73,12 @@ public class Calculations extends javax.swing.JFrame {
         lblVal1.setText("Value 1:");
 
         cbVal1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbVal1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Density / g dm^-3", "Energy / J", "Enthalpy change / J mol^-1", "Frequency / Hz", "Mass / g", "Moles", "Mr", "Pressure / Pa", "Specific heat capacity /J g^-1 K^-1", "Temperature / K", "Volume /dm^3", "Wavelength / m" }));
+        cbVal1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Density/ g dm^-3", "Energy/ J", "Enthalpy change/ J mol^-1", "Frequency/ Hz", "Mass/ g", "Moles", "Mr", "Pressure/ Pa", "Specific heat capacity/J g^-1 K^-1", "Temperature/ K", "Volume/dm^3", "Wavelength/ m" }));
+        cbVal1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbVal1ActionPerformed(evt);
+            }
+        });
 
         tfVal1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
@@ -81,7 +86,7 @@ public class Calculations extends javax.swing.JFrame {
         lblVal2.setText("Value 2:");
 
         cbVal2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbVal2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Density / g dm^-3", "Energy / J", "Enthalpy change / J mol^-1", "Frequency / Hz", "Mass / g", "Moles", "Mr", "Pressure / Pa", "Specific heat capacity /J g^-1 K^-1", "Temperature / K", "Volume /dm^3", "Wavelength / m" }));
+        cbVal2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Density/ g dm^-3", "Energy/ J", "Enthalpy change/ J mol^-1", "Frequency/ Hz", "Mass/ g", "Moles", "Mr", "Pressure/ Pa", "Specific heat capacity/J g^-1 K^-1", "Temperature/ K", "Volume/dm^3", "Wavelength/ m" }));
 
         tfVal2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
@@ -121,16 +126,16 @@ public class Calculations extends javax.swing.JFrame {
         lblValue6.setText("Value 6:");
 
         cbVal3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbVal3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Density / g dm^-3", "Energy / J", "Enthalpy change / J mol^-1", "Frequency / Hz", "Mass / g", "Moles", "Mr", "Pressure / Pa", "Specific heat capacity /J g^-1 K^-1", "Temperature / K", "Volume /dm^3", "Wavelength / m" }));
+        cbVal3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Density/ g dm^-3", "Energy/ J", "Enthalpy change/ J mol^-1", "Frequency/ Hz", "Mass/ g", "Moles", "Mr", "Pressure/ Pa", "Specific heat capacity/J g^-1 K^-1", "Temperature/ K", "Volume/dm^3", "Wavelength/ m" }));
 
         cbVal4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbVal4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Density / g dm^-3", "Energy / J", "Enthalpy change / J mol^-1", "Frequency / Hz", "Mass / g", "Moles", "Mr", "Pressure / Pa", "Specific heat capacity /J g^-1 K^-1", "Temperature / K", "Volume /dm^3", "Wavelength / m" }));
+        cbVal4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Density/ g dm^-3", "Energy/ J", "Enthalpy change/ J mol^-1", "Frequency/ Hz", "Mass/ g", "Moles", "Mr", "Pressure/ Pa", "Specific heat capacity/J g^-1 K^-1", "Temperature/ K", "Volume/dm^3", "Wavelength/ m" }));
 
         cbVal5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbVal5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Density / g dm^-3", "Ea / J mol^-1", "Energy / J", "Enthalpy change / J mol^-1", "Frequency / Hz", "Mass / g", "Moles", "Mr", "Pressure / Pa", "Specific heat capacity /J g^-1 K^-1", "Temperature / K", "Volume /dm^3", "Wavelength / m" }));
+        cbVal5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Density/ g dm^-3", "Energy/ J", "Enthalpy change/ J mol^-1", "Frequency/ Hz", "Mass/ g", "Moles", "Mr", "Pressure/ Pa", "Specific heat capacity/J g^-1 K^-1", "Temperature/ K", "Volume/dm^3", "Wavelength/ m" }));
 
         cbVal6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbVal6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Density / g dm^-3", "Energy / J", "Enthalpy change / J mol^-1", "Frequency / Hz", "Mass / g", "Moles", "Mr", "Pressure / Pa", "Specific heat capacity /J g^-1 K^-1", "Temperature / K", "Volume /dm^3", "Wavelength / m" }));
+        cbVal6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Density/ g dm^-3", "Energy/ J", "Enthalpy change/ J mol^-1", "Frequency/ Hz", "Mass/ g", "Moles", "Mr", "Pressure/ Pa", "Specific heat capacity/J g^-1 K^-1", "Temperature/ K", "Volume/dm^3", "Wavelength/ m" }));
 
         tfVal3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
@@ -145,6 +150,11 @@ public class Calculations extends javax.swing.JFrame {
 
         btnCalculate.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnCalculate.setText("Calculate");
+        btnCalculate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalculateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -284,6 +294,26 @@ public class Calculations extends javax.swing.JFrame {
         new CalcsOrPeriod().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateActionPerformed
+        // TODO add your handling code here:
+        String value1 = String.valueOf(cbVal1.getSelectedItem());
+        String value2 = String.valueOf(cbVal2.getSelectedItem());
+        if(value1.contains("/")){
+            String[] parts = value1.split("/");
+            value1 = parts[0];
+        }
+        if(value2.contains("/")){
+            String[] parts = value2.split("/");
+            value2 = parts[0];
+        }
+        String[] values = {value1, value2};
+        new DatabaseAccess().getEquation(values);
+    }//GEN-LAST:event_btnCalculateActionPerformed
+
+    private void cbVal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbVal1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbVal1ActionPerformed
 
     /**
      * @param args the command line arguments

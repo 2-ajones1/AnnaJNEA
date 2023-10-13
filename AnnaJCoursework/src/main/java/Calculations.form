@@ -211,21 +211,24 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="13">
             <StringItem index="0" value="-None selected-"/>
-            <StringItem index="1" value="Density / g dm^-3"/>
-            <StringItem index="2" value="Energy / J"/>
-            <StringItem index="3" value="Enthalpy change / J mol^-1"/>
-            <StringItem index="4" value="Frequency / Hz"/>
-            <StringItem index="5" value="Mass / g"/>
+            <StringItem index="1" value="Density/ g dm^-3"/>
+            <StringItem index="2" value="Energy/ J"/>
+            <StringItem index="3" value="Enthalpy change/ J mol^-1"/>
+            <StringItem index="4" value="Frequency/ Hz"/>
+            <StringItem index="5" value="Mass/ g"/>
             <StringItem index="6" value="Moles"/>
             <StringItem index="7" value="Mr"/>
-            <StringItem index="8" value="Pressure / Pa"/>
-            <StringItem index="9" value="Specific heat capacity /J g^-1 K^-1"/>
-            <StringItem index="10" value="Temperature / K"/>
-            <StringItem index="11" value="Volume /dm^3"/>
-            <StringItem index="12" value="Wavelength / m"/>
+            <StringItem index="8" value="Pressure/ Pa"/>
+            <StringItem index="9" value="Specific heat capacity/J g^-1 K^-1"/>
+            <StringItem index="10" value="Temperature/ K"/>
+            <StringItem index="11" value="Volume/dm^3"/>
+            <StringItem index="12" value="Wavelength/ m"/>
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbVal1ActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -253,18 +256,18 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="13">
             <StringItem index="0" value="-None selected-"/>
-            <StringItem index="1" value="Density / g dm^-3"/>
-            <StringItem index="2" value="Energy / J"/>
-            <StringItem index="3" value="Enthalpy change / J mol^-1"/>
-            <StringItem index="4" value="Frequency / Hz"/>
-            <StringItem index="5" value="Mass / g"/>
+            <StringItem index="1" value="Density/ g dm^-3"/>
+            <StringItem index="2" value="Energy/ J"/>
+            <StringItem index="3" value="Enthalpy change/ J mol^-1"/>
+            <StringItem index="4" value="Frequency/ Hz"/>
+            <StringItem index="5" value="Mass/ g"/>
             <StringItem index="6" value="Moles"/>
             <StringItem index="7" value="Mr"/>
-            <StringItem index="8" value="Pressure / Pa"/>
-            <StringItem index="9" value="Specific heat capacity /J g^-1 K^-1"/>
-            <StringItem index="10" value="Temperature / K"/>
-            <StringItem index="11" value="Volume /dm^3"/>
-            <StringItem index="12" value="Wavelength / m"/>
+            <StringItem index="8" value="Pressure/ Pa"/>
+            <StringItem index="9" value="Specific heat capacity/J g^-1 K^-1"/>
+            <StringItem index="10" value="Temperature/ K"/>
+            <StringItem index="11" value="Volume/dm^3"/>
+            <StringItem index="12" value="Wavelength/ m"/>
           </StringArray>
         </Property>
       </Properties>
@@ -370,18 +373,18 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="13">
             <StringItem index="0" value="-None selected-"/>
-            <StringItem index="1" value="Density / g dm^-3"/>
-            <StringItem index="2" value="Energy / J"/>
-            <StringItem index="3" value="Enthalpy change / J mol^-1"/>
-            <StringItem index="4" value="Frequency / Hz"/>
-            <StringItem index="5" value="Mass / g"/>
+            <StringItem index="1" value="Density/ g dm^-3"/>
+            <StringItem index="2" value="Energy/ J"/>
+            <StringItem index="3" value="Enthalpy change/ J mol^-1"/>
+            <StringItem index="4" value="Frequency/ Hz"/>
+            <StringItem index="5" value="Mass/ g"/>
             <StringItem index="6" value="Moles"/>
             <StringItem index="7" value="Mr"/>
-            <StringItem index="8" value="Pressure / Pa"/>
-            <StringItem index="9" value="Specific heat capacity /J g^-1 K^-1"/>
-            <StringItem index="10" value="Temperature / K"/>
-            <StringItem index="11" value="Volume /dm^3"/>
-            <StringItem index="12" value="Wavelength / m"/>
+            <StringItem index="8" value="Pressure/ Pa"/>
+            <StringItem index="9" value="Specific heat capacity/J g^-1 K^-1"/>
+            <StringItem index="10" value="Temperature/ K"/>
+            <StringItem index="11" value="Volume/dm^3"/>
+            <StringItem index="12" value="Wavelength/ m"/>
           </StringArray>
         </Property>
       </Properties>
@@ -397,18 +400,18 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="13">
             <StringItem index="0" value="-None selected-"/>
-            <StringItem index="1" value="Density / g dm^-3"/>
-            <StringItem index="2" value="Energy / J"/>
-            <StringItem index="3" value="Enthalpy change / J mol^-1"/>
-            <StringItem index="4" value="Frequency / Hz"/>
-            <StringItem index="5" value="Mass / g"/>
+            <StringItem index="1" value="Density/ g dm^-3"/>
+            <StringItem index="2" value="Energy/ J"/>
+            <StringItem index="3" value="Enthalpy change/ J mol^-1"/>
+            <StringItem index="4" value="Frequency/ Hz"/>
+            <StringItem index="5" value="Mass/ g"/>
             <StringItem index="6" value="Moles"/>
             <StringItem index="7" value="Mr"/>
-            <StringItem index="8" value="Pressure / Pa"/>
-            <StringItem index="9" value="Specific heat capacity /J g^-1 K^-1"/>
-            <StringItem index="10" value="Temperature / K"/>
-            <StringItem index="11" value="Volume /dm^3"/>
-            <StringItem index="12" value="Wavelength / m"/>
+            <StringItem index="8" value="Pressure/ Pa"/>
+            <StringItem index="9" value="Specific heat capacity/J g^-1 K^-1"/>
+            <StringItem index="10" value="Temperature/ K"/>
+            <StringItem index="11" value="Volume/dm^3"/>
+            <StringItem index="12" value="Wavelength/ m"/>
           </StringArray>
         </Property>
       </Properties>
@@ -422,21 +425,20 @@
           <Font name="Arial" size="12" style="0"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="14">
+          <StringArray count="13">
             <StringItem index="0" value="-None selected-"/>
-            <StringItem index="1" value="Density / g dm^-3"/>
-            <StringItem index="2" value="Ea / J mol^-1"/>
-            <StringItem index="3" value="Energy / J"/>
-            <StringItem index="4" value="Enthalpy change / J mol^-1"/>
-            <StringItem index="5" value="Frequency / Hz"/>
-            <StringItem index="6" value="Mass / g"/>
-            <StringItem index="7" value="Moles"/>
-            <StringItem index="8" value="Mr"/>
-            <StringItem index="9" value="Pressure / Pa"/>
-            <StringItem index="10" value="Specific heat capacity /J g^-1 K^-1"/>
-            <StringItem index="11" value="Temperature / K"/>
-            <StringItem index="12" value="Volume /dm^3"/>
-            <StringItem index="13" value="Wavelength / m"/>
+            <StringItem index="1" value="Density/ g dm^-3"/>
+            <StringItem index="2" value="Energy/ J"/>
+            <StringItem index="3" value="Enthalpy change/ J mol^-1"/>
+            <StringItem index="4" value="Frequency/ Hz"/>
+            <StringItem index="5" value="Mass/ g"/>
+            <StringItem index="6" value="Moles"/>
+            <StringItem index="7" value="Mr"/>
+            <StringItem index="8" value="Pressure/ Pa"/>
+            <StringItem index="9" value="Specific heat capacity/J g^-1 K^-1"/>
+            <StringItem index="10" value="Temperature/ K"/>
+            <StringItem index="11" value="Volume/dm^3"/>
+            <StringItem index="12" value="Wavelength/ m"/>
           </StringArray>
         </Property>
       </Properties>
@@ -452,18 +454,18 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="13">
             <StringItem index="0" value="-None selected-"/>
-            <StringItem index="1" value="Density / g dm^-3"/>
-            <StringItem index="2" value="Energy / J"/>
-            <StringItem index="3" value="Enthalpy change / J mol^-1"/>
-            <StringItem index="4" value="Frequency / Hz"/>
-            <StringItem index="5" value="Mass / g"/>
+            <StringItem index="1" value="Density/ g dm^-3"/>
+            <StringItem index="2" value="Energy/ J"/>
+            <StringItem index="3" value="Enthalpy change/ J mol^-1"/>
+            <StringItem index="4" value="Frequency/ Hz"/>
+            <StringItem index="5" value="Mass/ g"/>
             <StringItem index="6" value="Moles"/>
             <StringItem index="7" value="Mr"/>
-            <StringItem index="8" value="Pressure / Pa"/>
-            <StringItem index="9" value="Specific heat capacity /J g^-1 K^-1"/>
-            <StringItem index="10" value="Temperature / K"/>
-            <StringItem index="11" value="Volume /dm^3"/>
-            <StringItem index="12" value="Wavelength / m"/>
+            <StringItem index="8" value="Pressure/ Pa"/>
+            <StringItem index="9" value="Specific heat capacity/J g^-1 K^-1"/>
+            <StringItem index="10" value="Temperature/ K"/>
+            <StringItem index="11" value="Volume/dm^3"/>
+            <StringItem index="12" value="Wavelength/ m"/>
           </StringArray>
         </Property>
       </Properties>
@@ -514,6 +516,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Calculate"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCalculateActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

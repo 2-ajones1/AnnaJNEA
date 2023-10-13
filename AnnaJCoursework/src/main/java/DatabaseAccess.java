@@ -3,7 +3,9 @@ import java.util.Random;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -64,7 +66,6 @@ public class DatabaseAccess {
         for(int x = 0; x < 4; x++){
             userID = userID + String.valueOf(rand.nextInt(10));
         }
-        System.out.println(userID);
         try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
             String sqlStatement = ("INSERT INTO Users VALUES ('"+userID +"', '"+username+"', '"+password+"', '"+email+ "', " + student + ")");
             System.out.println(sqlStatement);
@@ -78,13 +79,40 @@ public class DatabaseAccess {
         }
     }
     
-    public static void deleteUser(){
-        //get userID
-        //check user and password
-        //send email
-        //confirm in email
-        //verify password
-        //DELETE FROM Users WHERE userID = userID
+    public static void createClass(String name){
+        Random rand = new Random();
+        //random gen userID
+        //INSERT INTO Users
+        //VALUES <userID>, Username, Password, Email, StudentorTeacher
+        String userID = "CL";
+        for(int x = 0; x < 4; x++){
+            userID = userID + String.valueOf(rand.nextInt(10));
+        }
+        try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
+            String sqlStatement = ("INSERT INTO Classes VALUES ");
+            System.out.println(sqlStatement);
+            try(Statement statement = con.createStatement()){
+                statement.execute(sqlStatement);
+                System.out.println("Success");
+            }
+            con.close();
+        }catch (Exception e){
+            System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
+        }
+    }
+    
+    public static void deleteUser(String userID){
+        try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
+            String sqlStatement = ("DELETE FROM Users WHERE UserID = '" + userID +  "';");
+            System.out.println(sqlStatement);
+            try(Statement statement = con.createStatement()){
+                statement.execute(sqlStatement);
+                System.out.println("Success");
+            }
+            con.close();
+        }catch (Exception e){
+            System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
+        }
     }
     
     public static void changeEmail(){
@@ -96,12 +124,31 @@ public class DatabaseAccess {
         //WHERE userID
     }
     
-    public static void getEquation(){
+    public static void getEquation(String[] values){
+        ArrayList<String> typeIDs = new ArrayList<>();
+        ResultSet rs = null;
+    
         try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
-            try(Statement statement = con.createStatement()){
-                String sql = "<query>";
-                ResultSet rs = statement.executeQuery(sql);
+            //for each value name in the passed list, get its primary key
+            for(String value : values){
+                String sqlStatement = ("SELECT TypeID FROM ValueTypes WHERE ValueName = '" + value + "';");
+                System.out.println(sqlStatement);
+                
+                try(Statement statement = con.createStatement()){
+                    rs = statement.executeQuery(sqlStatement);
+                    System.out.println(rs.toString());
+                    
+                    ResultSetMetaData rsmd = rs.getMetaData(); 
+                    int columnCount = rsmd.getColumnCount();
+                     while (rs.next()) {              
+                        int i = 1;
+                        while(i <= columnCount) {
+                            typeIDs.add(rs.getString(i++));
+                        }
+                    } 
+                }
             }
+            System.out.println(typeIDs.toString());
             con.close();
         }catch (Exception e){
             System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
