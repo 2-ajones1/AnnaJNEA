@@ -193,6 +193,8 @@ public class LoginPage extends javax.swing.JFrame {
         String username = tfUsername.getText();
         DatabaseAccess db = new DatabaseAccess();
         if(db.logIn(username, password)){
+            String email = db.getEmail(username);
+            User currentUser = new User(username, email, password);
             new HomePage().setVisible(true);
             this.dispose();
         }else{
@@ -218,15 +220,6 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void btnLoginFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_btnLoginFocusGained
         // TODO add your handling code here:
-        String password = String.valueOf(pswfPassword.getPassword());
-        String username = tfUsername.getText();
-        DatabaseAccess db = new DatabaseAccess();
-        if(db.logIn(username, password)){
-            new HomePage().setVisible(true);
-            this.dispose();
-        }else{
-            lblError.setText("Login details incorrect");
-        }
     }//GEN-LAST:event_btnLoginFocusGained
 
     /**

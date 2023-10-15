@@ -81,6 +81,11 @@ public class ChangeUser extends javax.swing.JFrame {
 
         btnChangeUser.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnChangeUser.setText("Change Username");
+        btnChangeUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangeUserActionPerformed(evt);
+            }
+        });
 
         btnBack.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnBack.setText("Back");
@@ -161,6 +166,14 @@ public class ChangeUser extends javax.swing.JFrame {
         new UserOrEmail().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnChangeUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeUserActionPerformed
+        // TODO add your handling code here:
+        String password = String.valueOf(pswfPassword.getPassword());
+        String username = tfCurrentUser.getText();
+        String newUsername = tfNewUser.getText();
+        new DatabaseAccess().changeUsername(username, newUsername, password);
+    }//GEN-LAST:event_btnChangeUserActionPerformed
 
     /**
      * @param args the command line arguments

@@ -28,12 +28,14 @@ public class ChangePassword extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         lblChangePassword = new javax.swing.JLabel();
-        lblNewPassword = new javax.swing.JLabel();
-        lblConfirm = new javax.swing.JLabel();
+        lblPassword = new javax.swing.JLabel();
+        lblNew = new javax.swing.JLabel();
         btnVerify = new javax.swing.JButton();
         pswf1 = new javax.swing.JPasswordField();
-        pswfConfirm = new javax.swing.JPasswordField();
+        pswfNew = new javax.swing.JPasswordField();
         btnBack = new javax.swing.JButton();
+        tfEmail = new javax.swing.JTextField();
+        lblEmail = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,20 +56,25 @@ public class ChangePassword extends javax.swing.JFrame {
         lblChangePassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblChangePassword.setText("Change Password");
 
-        lblNewPassword.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblNewPassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNewPassword.setText("Enter new password");
+        lblPassword.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblPassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPassword.setText("Enter password");
 
-        lblConfirm.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblConfirm.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblConfirm.setText("Confirm password");
+        lblNew.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblNew.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNew.setText("Enter new password");
 
         btnVerify.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnVerify.setText("Verify");
+        btnVerify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerifyActionPerformed(evt);
+            }
+        });
 
         pswf1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
-        pswfConfirm.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        pswfNew.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         btnBack.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnBack.setText("Back");
@@ -77,26 +84,39 @@ public class ChangePassword extends javax.swing.JFrame {
             }
         });
 
+        tfEmail.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        lblEmail.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblEmail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblEmail.setText("Email");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 267, Short.MAX_VALUE)
-                .addComponent(btnVerify)
-                .addGap(264, 264, 264))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblChangePassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblNewPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblConfirm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pswf1)
-                    .addComponent(pswfConfirm)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblChangePassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblNew, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pswf1)
+                            .addComponent(pswfNew)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnBack)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(266, 266, 266)
+                        .addComponent(btnVerify)
+                        .addGap(0, 255, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tfEmail))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -105,17 +125,21 @@ public class ChangePassword extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblChangePassword)
+                .addGap(41, 41, 41)
+                .addComponent(lblEmail)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lblNewPassword)
+                .addComponent(lblPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pswf1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lblConfirm)
+                .addComponent(lblNew)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pswfConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
+                .addComponent(pswfNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnVerify)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(btnBack)
                 .addContainerGap())
         );
@@ -128,6 +152,14 @@ public class ChangePassword extends javax.swing.JFrame {
         new AccountHome().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnVerifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerifyActionPerformed
+        // TODO add your handling code here:
+        String password = String.valueOf(pswf1.getPassword());
+        String email = tfEmail.getText();
+        String newPassword = String.valueOf(pswfNew.getPassword());
+        new DatabaseAccess().changePassword(email, password, newPassword);
+    }//GEN-LAST:event_btnVerifyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,9 +201,11 @@ public class ChangePassword extends javax.swing.JFrame {
     private javax.swing.JButton btnVerify;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblChangePassword;
-    private javax.swing.JLabel lblConfirm;
-    private javax.swing.JLabel lblNewPassword;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblNew;
+    private javax.swing.JLabel lblPassword;
     private javax.swing.JPasswordField pswf1;
-    private javax.swing.JPasswordField pswfConfirm;
+    private javax.swing.JPasswordField pswfNew;
+    private javax.swing.JTextField tfEmail;
     // End of variables declaration//GEN-END:variables
 }

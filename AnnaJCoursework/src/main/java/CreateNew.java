@@ -60,6 +60,11 @@ public class CreateNew extends javax.swing.JFrame {
 
         btnCreateClass.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnCreateClass.setText("Create");
+        btnCreateClass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateClassActionPerformed(evt);
+            }
+        });
 
         btnBack.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnBack.setText("Back");
@@ -118,6 +123,12 @@ public class CreateNew extends javax.swing.JFrame {
         new ClassesHome().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnCreateClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateClassActionPerformed
+        // TODO add your handling code here:
+        String className = tfClassName.getText();
+        new DatabaseAccess().createClass(className);
+    }//GEN-LAST:event_btnCreateClassActionPerformed
 
     /**
      * @param args the command line arguments

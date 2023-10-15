@@ -62,6 +62,11 @@ public class ChangeEmail extends javax.swing.JFrame {
 
         btnChangeEmail.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnChangeEmail.setText("Change Email");
+        btnChangeEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangeEmailActionPerformed(evt);
+            }
+        });
 
         lblCurrentEmail.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblCurrentEmail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -153,6 +158,14 @@ public class ChangeEmail extends javax.swing.JFrame {
         new UserOrEmail().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnChangeEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeEmailActionPerformed
+        // TODO add your handling code here:
+        String password = String.valueOf(pswf1.getPassword());
+        String email = tfCurrentEmail.getText();
+        String newEmail = tfNewEmail.getText();
+        new DatabaseAccess().changeEmail(email, newEmail, password);
+    }//GEN-LAST:event_btnChangeEmailActionPerformed
 
     /**
      * @param args the command line arguments

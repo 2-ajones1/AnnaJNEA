@@ -19,10 +19,10 @@ import java.util.ArrayList;
  */
 public class DatabaseAccess {
     
-    private static final String DB_URL = "jdbc:mysql://computing.gfmat.org:3306/";
-    private static final String DB_NAME = "2022c_AJones_test";
-    private static final String USERNAME = "2022c_AJones";
-    private static final String PASSWORD = "gS8Hd5ASpw6K2ufw";
+    protected static final String DB_URL = "jdbc:mysql://computing.gfmat.org:3306/";
+    protected static final String DB_NAME = "2022c_AJones_test";
+    protected static final String USERNAME = "2022c_AJones";
+    protected static final String PASSWORD = "gS8Hd5ASpw6K2ufw";
     
     //working
     public static boolean sqlTestDBConnection(){
@@ -59,6 +59,82 @@ public class DatabaseAccess {
         }
     }
     
+    public static boolean verifyUser(String email, String username, String password){
+        try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
+            String sqlStatement = "SELECT UserPassword FROM Users WHERE UserEmail = '" + email + "' AND Username = '" + username +"';";
+            ResultSet rs = null;
+            String DBpassword = "";
+            try(Statement statement = con.createStatement()){
+                statement.execute(sqlStatement);
+                rs = statement.executeQuery(sqlStatement);
+                if(rs.next()){
+                    DBpassword = rs.getString(1);
+                }
+            }
+            if(DBpassword.equals(password)){
+                return true;
+            }
+            con.close();
+        }catch (Exception e){
+            System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
+        }
+        return false;
+    }
+    
+    public static String getUserID(String email){
+        try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
+            String sqlStatement = "SELECT UserID FROM Users WHERE UserEmail = '" + email + "';";
+            ResultSet rs = null;
+            try(Statement statement = con.createStatement()){
+                statement.execute(sqlStatement);
+                rs = statement.executeQuery(sqlStatement);
+                if(rs.next()){
+                    return rs.getString(1);
+                }
+            }
+            con.close();
+        }catch (Exception e){
+            System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
+        }
+        return "";
+    }
+    
+    public static String getEmail(String username){
+        try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
+            String sqlStatement = "SELECT UserEmail FROM Users WHERE Username = '" + username + "';";
+            ResultSet rs = null;
+            try(Statement statement = con.createStatement()){
+                statement.execute(sqlStatement);
+                rs = statement.executeQuery(sqlStatement);
+                if(rs.next()){
+                    return rs.getString(1);
+                }
+            }
+            con.close();
+        }catch (Exception e){
+            System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
+        }
+        return "";
+    }
+    
+    public static String getUsername(String userID){
+        try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
+            String sqlStatement = "SELECT Username FROM Users WHERE UserID = '" + userID + "';";
+            ResultSet rs = null;
+            try(Statement statement = con.createStatement()){
+                statement.execute(sqlStatement);
+                rs = statement.executeQuery(sqlStatement);
+                if(rs.next()){
+                    return rs.getString(1);
+                }
+            }
+            con.close();
+        }catch (Exception e){
+            System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
+        }
+        return "";
+    }
+    
     //working
     public static void createUser(String email, String username, String password, boolean student){
         Random rand = new Random();
@@ -82,17 +158,19 @@ public class DatabaseAccess {
         }
     }
     
+    //working
     public static void createClass(String name){
         Random rand = new Random();
-        //random gen userID
-        //INSERT INTO Users
-        //VALUES <userID>, Username, Password, Email, StudentorTeacher
-        String userID = "CL";
+        String classID = "CL";
         for(int x = 0; x < 4; x++){
-            userID = userID + String.valueOf(rand.nextInt(10));
+            classID = classID + String.valueOf(rand.nextInt(10));
+        }
+        String classCode = "";
+        for(int x = 0; x < 9; x++){
+            classCode = classCode + String.valueOf(rand.nextInt(10));
         }
         try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
-            String sqlStatement = ("INSERT INTO Classes VALUES ");
+            String sqlStatement = ("INSERT INTO Classes VALUES ('" + classID + "', '" + name + "', '" + classCode + "');");
             System.out.println(sqlStatement);
             try(Statement statement = con.createStatement()){
                 statement.execute(sqlStatement);
@@ -104,6 +182,7 @@ public class DatabaseAccess {
         }
     }
     
+    //working
     public static boolean logIn(String username, String password){
         try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
             String sqlStatement = "SELECT UserPassword FROM Users WHERE Username = '" + username + "';";
@@ -152,13 +231,126 @@ public class DatabaseAccess {
         }
     }
     
-    public static void changeEmail(){
-        //get userID with email
-        //check password
-        //verify with email or send notification
-        //UPDATE Users
-        //SET UserEmail = <newEmail>
-        //WHERE userID
+    //working
+    public static void changeEmail(String email, String newEmail, String password){
+        try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
+            String sqlStatement = "SELECT UserPassword FROM Users WHERE UserEmail = '" + email + "';";
+            ResultSet rs = null;
+            String userID = "";
+            String DBpassword = "";
+            try(Statement statement = con.createStatement()){
+                statement.execute(sqlStatement);
+                rs = statement.executeQuery(sqlStatement);
+                if(rs.next()){
+                    DBpassword = rs.getString(1);
+                }
+            }
+            if(DBpassword.equals(password)){
+                sqlStatement = "SELECT UserID FROM Users WHERE UserEmail = '" + email + "';";
+                try(Statement statement = con.createStatement()){
+                    statement.execute(sqlStatement);
+                    rs = statement.executeQuery(sqlStatement);
+                    if(rs.next()){
+                        userID = rs.getString(1);
+                    }
+                }
+                sqlStatement = "UPDATE Users SET UserEmail = '" + newEmail +"' WHERE UserID = '"+ userID +"';";
+                try(Statement statement = con.createStatement()){
+                    statement.execute(sqlStatement);
+                }
+            }
+            con.close();
+        }catch (Exception e){
+            System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
+        }
+    }
+    
+    //working
+    public static void changePassword(String email, String password, String newPassword){
+        try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
+            String sqlStatement = "SELECT UserPassword FROM Users WHERE UserEmail = '" + email + "';";
+            ResultSet rs = null;
+            String userID = "";
+            String DBpassword = "";
+            try(Statement statement = con.createStatement()){
+                statement.execute(sqlStatement);
+                rs = statement.executeQuery(sqlStatement);
+                if(rs.next()){
+                    DBpassword = rs.getString(1);
+                }
+            }
+            if(DBpassword.equals(password)){
+                sqlStatement = "SELECT UserID FROM Users WHERE UserEmail = '" + email + "';";
+                try(Statement statement = con.createStatement()){
+                    statement.execute(sqlStatement);
+                    rs = statement.executeQuery(sqlStatement);
+                    if(rs.next()){
+                        userID = rs.getString(1);
+                    }
+                }
+                sqlStatement = "UPDATE Users SET UserPassword = '" + newPassword +"' WHERE UserID = '"+ userID +"';";
+                try(Statement statement = con.createStatement()){
+                    statement.execute(sqlStatement);
+                }
+            }
+            con.close();
+        }catch (Exception e){
+            System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
+        }
+    }
+    
+    //working
+    public static void changeUsername(String username, String newUsername, String password){
+        try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
+            String sqlStatement = "SELECT UserPassword FROM Users WHERE Username = '" + username + "';";
+            ResultSet rs = null;
+            String userID = "";
+            String DBpassword = "";
+            try(Statement statement = con.createStatement()){
+                statement.execute(sqlStatement);
+                rs = statement.executeQuery(sqlStatement);
+                if(rs.next()){
+                    DBpassword = rs.getString(1);
+                }
+            }
+            if(DBpassword.equals(password)){
+                sqlStatement = "SELECT UserID FROM Users WHERE Username = '" + username + "';";
+                try(Statement statement = con.createStatement()){
+                    statement.execute(sqlStatement);
+                    rs = statement.executeQuery(sqlStatement);
+                    if(rs.next()){
+                        userID = rs.getString(1);
+                    }
+                }
+                sqlStatement = "UPDATE Users SET Username = '" + newUsername +"' WHERE UserID = '"+ userID +"';";
+                try(Statement statement = con.createStatement()){
+                    statement.execute(sqlStatement);
+                }
+            }
+            con.close();
+        }catch (Exception e){
+            System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
+        }
+    }
+    
+    //working on the database side
+    public static void findPages (String keyword){
+        try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
+            String sqlStatement = "SELECT PageID FROM InformationPages WHERE PageContent LIKE '%" + keyword + "%'";
+            ResultSet rs = null;
+            String pageID = "";
+            try(Statement statement = con.createStatement()){
+                statement.execute(sqlStatement);
+                rs = statement.executeQuery(sqlStatement);
+                if(rs.next()){
+                    pageID = rs.getString(1);
+                }
+            }
+            System.out.println(pageID);
+            con.close();
+        }catch (Exception e){
+            System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
+        }
     }
     
     public static void getEquation(String[] values){

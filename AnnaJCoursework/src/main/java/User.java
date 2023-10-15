@@ -8,13 +8,24 @@
  *
  * @author 2-ajones1
  */
-public class User {
-    /*
-    String UserID
-    String Username
-    String UserPassword
-    String UserEmail
-    Boolean Student
-    */
+public class User extends DatabaseAccess{
+    
+    private static String username;
+    private static String userEmail;
+    private static String userID;
+    private static DatabaseAccess userDB;
+    
+    public User(String inputName, String inputEmail, String password){
+        if(userDB.verifyUser(inputEmail, inputName, password)){
+            userID = userDB.getUserID(userEmail);
+            username = userDB.getUsername(userID);
+            userEmail = userDB.getEmail(username);
+        }
+    }
+
+    @Override
+    public String toString(){
+        return username;
+    }
     
 }
