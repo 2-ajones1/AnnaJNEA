@@ -190,12 +190,13 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         String password = String.valueOf(pswfPassword.getPassword());
-        if (tfUsername.getText().equals("firefox6662000") && password.equals("password")){
+        String username = tfUsername.getText();
+        DatabaseAccess db = new DatabaseAccess();
+        if(db.logIn(username, password)){
             new HomePage().setVisible(true);
             this.dispose();
         }else{
             lblError.setText("Login details incorrect");
-            lblError.setVisible(true);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -218,12 +219,13 @@ public class LoginPage extends javax.swing.JFrame {
     private void btnLoginFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_btnLoginFocusGained
         // TODO add your handling code here:
         String password = String.valueOf(pswfPassword.getPassword());
-        if (tfUsername.getText().equals("firefox6662000") && password.equals("password")){
+        String username = tfUsername.getText();
+        DatabaseAccess db = new DatabaseAccess();
+        if(db.logIn(username, password)){
             new HomePage().setVisible(true);
             this.dispose();
         }else{
             lblError.setText("Login details incorrect");
-            lblError.setVisible(true);
         }
     }//GEN-LAST:event_btnLoginFocusGained
 

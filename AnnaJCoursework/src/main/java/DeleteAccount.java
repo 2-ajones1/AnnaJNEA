@@ -153,6 +153,10 @@ public class DeleteAccount extends javax.swing.JFrame {
 
     private void btnVerifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerifyActionPerformed
         // TODO add your handling code here:
+        String username = tfUsername.getText();
+        String email = tfEmail.getText();
+        String password = String.valueOf(pswf1.getPassword());
+        new DatabaseAccess().deleteUser(email, username, password);
     }//GEN-LAST:event_btnVerifyActionPerformed
 
     private void pswf1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pswf1ActionPerformed

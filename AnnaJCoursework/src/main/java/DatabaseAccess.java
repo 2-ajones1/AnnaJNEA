@@ -24,6 +24,7 @@ public class DatabaseAccess {
     private static final String USERNAME = "2022c_AJones";
     private static final String PASSWORD = "gS8Hd5ASpw6K2ufw";
     
+    //working
     public static boolean sqlTestDBConnection(){
         boolean connection;
         try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
@@ -44,6 +45,7 @@ public class DatabaseAccess {
         //ResultSet rs = st.executeQuery(sql);
     //}
     
+    //working
     public static void sqlExecution(){
         try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
             System.out.println("CONNECTION MADE!");
@@ -57,6 +59,7 @@ public class DatabaseAccess {
         }
     }
     
+    //working
     public static void createUser(String email, String username, String password, boolean student){
         Random rand = new Random();
         //random gen userID
@@ -101,9 +104,43 @@ public class DatabaseAccess {
         }
     }
     
-    public static void deleteUser(String userID){
+    public static boolean logIn(String username, String password){
         try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
-            String sqlStatement = ("DELETE FROM Users WHERE UserID = '" + userID +  "';");
+            String sqlStatement = "SELECT UserPassword FROM Users WHERE Username = '" + username + "';";
+            ResultSet rs = null;
+            String DBpassword = "";
+            try(Statement statement = con.createStatement()){
+                rs = statement.executeQuery(sqlStatement);
+                if(rs.next()){
+                    DBpassword = rs.getString(1);
+                }
+            }
+            con.close();
+            if (DBpassword.equals(password)){
+                    return true;
+                }else{
+                    return false;
+                }
+        }catch (Exception e){
+            System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
+            return false;
+        }
+    }
+    
+    //working
+    public static void deleteUser(String email, String username, String password){
+        try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
+            ResultSet rs = null;
+            String userID = "";
+            String sqlStatement = ("SELECT UserID FROM Users WHERE Username = '" + username + "' AND UserEmail = '"+ email + "' AND UserPassword = '" + password + "';");
+            try(Statement statement = con.createStatement()){
+                rs = statement.executeQuery(sqlStatement);
+                if(rs.next()){
+                    userID = rs.getString(1);
+                }
+                System.out.println("Success");
+            }
+            sqlStatement = ("DELETE FROM Users WHERE UserID = '" + userID +  "';");
             System.out.println(sqlStatement);
             try(Statement statement = con.createStatement()){
                 statement.execute(sqlStatement);
