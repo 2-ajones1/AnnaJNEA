@@ -356,6 +356,11 @@ public class DatabaseAccess {
     public static void getEquation(String[] values){
         ArrayList<String> typeIDs = new ArrayList<>();
         ResultSet rs = null;
+        String valueName1 = values[0];
+        String valueName2 = values[1];
+        int position1 = 0;
+        int position2 = 0;
+        int position3 = 0;
     
         try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
             //for each value name in the passed list, get its primary key
@@ -377,10 +382,102 @@ public class DatabaseAccess {
                     } 
                 }
             }
-            System.out.println(typeIDs.toString());
+            String typeid1 = typeIDs.get(0);
+            String typeid2 = typeIDs.get(1);
+            ArrayList<String> equationIDs = new ArrayList<>();
+             ArrayList<String> positions = new ArrayList<>();
+            String equationid = "";
+            String sqlStatement = ("SELECT EquationID FROM Equations WHERE TypeID1 = '" + typeid1 + "' OR TypeID2 = '" + typeid1 + "' OR TypeID3 = '" + typeid1 + "';");
+            System.out.println(sqlStatement);
+                try(Statement statement = con.createStatement()){
+                    if(statement.execute(sqlStatement)){
+                        rs = statement.executeQuery(sqlStatement);
+                        ResultSetMetaData rsmd = rs.getMetaData(); 
+                        int columnCount = rsmd.getColumnCount();
+                        while (rs.next()) {              
+                            int i = 1;
+                            while(i <= columnCount) {
+                                equationIDs.add(rs.getString(i++));
+                            }
+                        }
+                        sqlStatement = ("SELECT EquationID FROM Equations WHERE TypeID1 = '" + typeid2 + "' OR TypeID2 = '" + typeid2 + "' OR TypeID3 = '" + typeid2 + "';");
+                        if(statement.execute(sqlStatement)){
+                            rs = statement.executeQuery(sqlStatement);
+                            if(rs.next()){
+                                equationid = rs.getString(1);
+                            }
+                        }
+                        
+                        for(String id : equationIDs){
+                            if(id.equals(equationid)){
+                                equationid = id;
+                            }
+                        }
+                        positions = new DatabaseAccess().getPositions(typeid1, typeid2);
+                    }
+                }
+            System.out.println(equationid);
             con.close();
         }catch (Exception e){
             System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
+        }
+    }
+    
+    public static ArrayList<String> getPositions(String typeid1, String typeid2){
+        ResultSet rs = null;
+        String typeidx = "";
+        ArrayList<String> positions = new ArrayList<>();
+        try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
+            int position1 = 0;
+            int position2 = 0;
+            String sqlStatement = ("SELECT EquationID FROM Equations WHERE TypeID1 = '" + typeid1 + "';");
+            try(Statement statement = con.createStatement()){
+                if(statement.execute(sqlStatement)){
+                    position1 = 1;
+                }else{
+                    sqlStatement = ("SELECT EquationID FROM Equations WHERE TypeID2 = '" + typeid1 + "';");
+                    if(statement.execute(sqlStatement)){
+                        position1 = 2;
+                    }else{
+                        sqlStatement = ("SELECT EquationID FROM Equations WHERE TypeID3 = '" + typeid1 + "';");
+                        if(statement.execute(sqlStatement)){
+                            position1 = 3;
+                        }
+                    } 
+                }
+                sqlStatement = ("SELECT EquationID FROM Equations WHERE TypeID1 = '" + typeid2 + "';");
+                if(statement.execute(sqlStatement)){
+                    position2 = 1;
+                }else{
+                    sqlStatement = ("SELECT EquationID FROM Equations WHERE TypeID2 = '" + typeid2 + "';");
+                    if(statement.execute(sqlStatement)){
+                        position2 = 2;
+                    }else{
+                        sqlStatement = ("SELECT EquationID FROM Equations WHERE TypeID3 = '" + typeid2 + "';");
+                        if(statement.execute(sqlStatement)){
+                            position2 = 3;
+                        }
+                    } 
+                }
+                positions.add(position1 - 1, typeid1);
+                positions.add(position2 - 1, typeid2);
+                for (int i = 0; i < positions.size(); i++){
+                    if(positions.get(i) == null){
+                        int x = i+ 1;
+                        sqlStatement = ("SELECT TypeID" + x + " FROM Equations" );
+                        rs = statement.executeQuery(sqlStatement);
+                            if(rs.next()){
+                                typeidx = rs.getString(1);
+                            }
+                        positions.add(i, typeidx);
+                    }
+                }
+            }
+            con.close();
+            return positions;
+        }catch (Exception e){
+            System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
+            return positions;
         }
     }
 }
