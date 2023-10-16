@@ -38,13 +38,6 @@ public class DatabaseAccess {
         return connection;
     }
     
-    //public static ResultSet getData() throwsSQL Exception{
-        //String sql = "<query>";
-        //Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD);
-        //Statement st = con.createStatement();
-        //ResultSet rs = st.executeQuery(sql);
-    //}
-    
     //working
     public static void sqlExecution(){
         try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
@@ -426,7 +419,8 @@ public class DatabaseAccess {
     public static ArrayList<String> getPositions(String typeid1, String typeid2){
         ResultSet rs = null;
         String typeidx = "";
-        ArrayList<String> positions = new ArrayList<>();
+        ArrayList<String> positions = new ArrayList<>(3);
+        ArrayList<String> equationIDs = new ArrayList<>();
         try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
             int position1 = 0;
             int position2 = 0;
@@ -472,6 +466,7 @@ public class DatabaseAccess {
                         positions.add(i, typeidx);
                     }
                 }
+                System.out.println(positions.toString());
             }
             con.close();
             return positions;
