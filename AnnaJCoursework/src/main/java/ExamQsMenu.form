@@ -100,6 +100,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="By Topic"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTopicActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnAccuracy">
       <Properties>
@@ -108,6 +111,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="By Lowest Accuracy"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAccuracyActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnRandom">
       <Properties>
@@ -116,6 +122,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Shuffled"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRandomActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnBack">
       <Properties>

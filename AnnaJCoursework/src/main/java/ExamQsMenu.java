@@ -54,12 +54,27 @@ public class ExamQsMenu extends javax.swing.JFrame {
 
         btnTopic.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnTopic.setText("By Topic");
+        btnTopic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTopicActionPerformed(evt);
+            }
+        });
 
         btnAccuracy.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnAccuracy.setText("By Lowest Accuracy");
+        btnAccuracy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAccuracyActionPerformed(evt);
+            }
+        });
 
         btnRandom.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnRandom.setText("Shuffled");
+        btnRandom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRandomActionPerformed(evt);
+            }
+        });
 
         btnBack.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnBack.setText("Back");
@@ -115,6 +130,24 @@ public class ExamQsMenu extends javax.swing.JFrame {
         new HomePage().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnTopicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTopicActionPerformed
+        // TODO add your handling code here:
+        new ExamQuestion().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnTopicActionPerformed
+
+    private void btnAccuracyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccuracyActionPerformed
+        // TODO add your handling code here:
+        new ExamQuestion().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAccuracyActionPerformed
+
+    private void btnRandomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRandomActionPerformed
+        // TODO add your handling code here:
+        new ExamQuestion().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnRandomActionPerformed
 
     /**
      * @param args the command line arguments
