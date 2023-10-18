@@ -128,6 +128,96 @@ public class DatabaseAccess {
         return "";
     }
     
+    public static String getTopicName(String topicID){
+        try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
+            String sqlStatement = "SELECT TopicName FROM Topics WHERE TopicID = '" + topicID + "';";
+            ResultSet rs = null;
+            try(Statement statement = con.createStatement()){
+                statement.execute(sqlStatement);
+                rs = statement.executeQuery(sqlStatement);
+                if(rs.next()){
+                    return rs.getString(1);
+                }
+            }
+            con.close();
+        }catch (Exception e){
+            System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
+        }
+        return "";
+    }
+    
+    public static ArrayList<String> getListOfExamQIDs(){
+        ArrayList<String> examQIDs = new ArrayList<> ();
+        try ( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)) {
+            String sqlStatement = "SELECT ExamQID FROM ExamQuestions;";
+            ResultSet rs = null;
+            try ( Statement statement = con.createStatement()) {
+                statement.execute(sqlStatement);
+                rs = statement.executeQuery(sqlStatement);
+                ResultSetMetaData rsmd = rs.getMetaData();
+                int columnCount = rsmd.getColumnCount();
+                while (rs.next()) {
+                    int i = 1;
+                    while (i <= columnCount) {
+                        examQIDs.add(rs.getString(i++));
+                    }
+                }
+            }
+            con.close();
+        } catch (Exception e){
+            System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
+        }
+        return examQIDs;
+    }
+
+    public static ArrayList<String> getExamQuestion(int modifier) {
+        ArrayList<String> examQuestion = new ArrayList<>();
+        if (modifier == 1) {
+            ArrayList<String> examIDs = new ArrayList<>();
+            ArrayList<String> topicIDs = new ArrayList<>();
+            examIDs = new DatabaseAccess().getListOfExamQIDs();
+            Random rand = new Random();
+            String examQID = examIDs.get(rand.nextInt(examIDs.size()));
+            try ( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)) {
+                String sqlStatement = "SELECT TopicID FROM ExamQuestions WHERE ExamQID = '" + examQID + "';";
+                ResultSet rs = null;
+                try ( Statement statement = con.createStatement()) {
+                    statement.execute(sqlStatement);
+                    rs = statement.executeQuery(sqlStatement);
+                    ResultSetMetaData rsmd = rs.getMetaData();
+                    int columnCount = rsmd.getColumnCount();
+                    while (rs.next()) {
+                        int i = 1;
+                        while (i <= columnCount) {
+                            topicIDs.add(rs.getString(i++));
+                        }
+                    }
+                }
+                String topicID = topicIDs.get(0);
+                System.out.println(examQID);
+                System.out.println(topicID);
+                sqlStatement = "SELECT Question, MarksAvailable, TopicName FROM ExamQuestions, Topics WHERE ExamQuestions.ExamQID = '" + examQID + "' AND Topics.TopicID = '" + topicID + "';";
+                System.out.println(sqlStatement);
+                try ( Statement statement = con.createStatement()) {
+                    statement.execute(sqlStatement);
+                    rs = statement.executeQuery(sqlStatement);
+                    ResultSetMetaData rsmd = rs.getMetaData();
+                    int columnCount = rsmd.getColumnCount();
+                    while (rs.next()) {
+                        int i = 1;
+                        while (i <= columnCount) {
+                            examQuestion.add(rs.getString(i++));
+                        }
+                    }
+                }
+                con.close();
+            } catch (Exception e) {
+                System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
+            }
+        }
+        return examQuestion;
+    }
+
     //working
     public static void createUser(String email, String username, String password, boolean student){
         Random rand = new Random();
@@ -327,23 +417,30 @@ public class DatabaseAccess {
     }
     
     //working on the database side
-    public static void findPages (String keyword){
+    public static ArrayList<String> findPages (String keyword){
+        ArrayList<String> pageTitles = new ArrayList<>();
         try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
-            String sqlStatement = "SELECT PageID FROM InformationPages WHERE PageContent LIKE '%" + keyword + "%'";
+            String sqlStatement = "SELECT PageTitle FROM InformationPages WHERE PageContent LIKE '%" + keyword + "%'";
             ResultSet rs = null;
-            String pageID = "";
+            
             try(Statement statement = con.createStatement()){
                 statement.execute(sqlStatement);
                 rs = statement.executeQuery(sqlStatement);
-                if(rs.next()){
-                    pageID = rs.getString(1);
-                }
+                rs = statement.executeQuery(sqlStatement);
+                    ResultSetMetaData rsmd = rs.getMetaData();
+                    int columnCount = rsmd.getColumnCount();
+                    while (rs.next()) {
+                        int i = 1;
+                        while (i <= columnCount) {
+                            pageTitles.add(rs.getString(i++));
+                        }
+                    }
             }
-            System.out.println(pageID);
             con.close();
         }catch (Exception e){
             System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
         }
+        return pageTitles;
     }
     
     public static void getEquation(String[] values){

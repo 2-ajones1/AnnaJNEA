@@ -1,3 +1,6 @@
+
+import java.util.ArrayList;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,8 +18,13 @@ public class ExamQuestion extends javax.swing.JFrame {
      */
     public ExamQuestion() {
         initComponents();
-        lblExamQuestion.setText("jodie whittaker was a good doctor change my mind");
-        lblTopicName.setText("chemsity");
+        ArrayList<String> examQ = new DatabaseAccess().getExamQuestion(1);
+        String question = examQ.get(0);
+        String marks = examQ.get(1);
+        String topic = examQ.get(2);
+        lblExamQuestion.setText(question);
+        lblTopicName.setText(topic);
+        lblMarks.setText(marks);
     }
 
     /**
@@ -35,6 +43,7 @@ public class ExamQuestion extends javax.swing.JFrame {
         btnMark = new javax.swing.JButton();
         lblExamQuestion = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
+        lblMarks = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,6 +93,9 @@ public class ExamQuestion extends javax.swing.JFrame {
             }
         });
 
+        lblMarks.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblMarks.setText("Marks");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -98,7 +110,10 @@ public class ExamQuestion extends javax.swing.JFrame {
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnMark))
-                    .addComponent(lblExamQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblExamQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblMarks)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -109,7 +124,9 @@ public class ExamQuestion extends javax.swing.JFrame {
                 .addComponent(lblTopicName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(lblExamQuestion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(lblMarks)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -176,6 +193,7 @@ public class ExamQuestion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblExamQuestion;
+    private javax.swing.JLabel lblMarks;
     private javax.swing.JLabel lblTopicName;
     private javax.swing.JTextArea taAnswer;
     // End of variables declaration//GEN-END:variables

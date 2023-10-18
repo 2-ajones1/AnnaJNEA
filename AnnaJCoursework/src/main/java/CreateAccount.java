@@ -178,6 +178,8 @@ public class CreateAccount extends javax.swing.JFrame {
         Boolean student = true;
         DatabaseAccess create = new DatabaseAccess();
         create.createUser(email, username, password, student);
+        new LoginPage().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
