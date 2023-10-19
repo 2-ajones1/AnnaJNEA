@@ -266,27 +266,40 @@ public class DatabaseAccess {
     }
     
     //working
-    public static boolean logIn(String username, String password){
+    public static User logIn(String username, String password){
+        User user = new User("", "");
+        ArrayList<String> userInfo = new ArrayList<> ();
         try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
             String sqlStatement = "SELECT UserPassword FROM Users WHERE Username = '" + username + "';";
             ResultSet rs = null;
             String DBpassword = "";
-            try(Statement statement = con.createStatement()){
+            try ( Statement statement = con.createStatement()) {
                 rs = statement.executeQuery(sqlStatement);
-                if(rs.next()){
+                if (rs.next()) {
                     DBpassword = rs.getString(1);
                 }
+                if (DBpassword.equals(password)) {
+                    sqlStatement = "SELECT Email WHERE Username = '" + username + "';";
+                    rs = statement.executeQuery(sqlStatement);
+                    ResultSetMetaData rsmd = rs.getMetaData();
+                    int columnCount = rsmd.getColumnCount();
+                    while (rs.next()) {
+                        int i = 1;
+                        while (i <= columnCount) {
+                            userInfo.add(rs.getString(i++));
+                        }
+                    }
+                    String email = userInfo.get(0);
+                    user = new User(username, email);
+                }
+
             }
             con.close();
-            if (DBpassword.equals(password)){
-                    return true;
-                }else{
-                    return false;
-                }
-        }catch (Exception e){
+
+        } catch (Exception e){
             System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
-            return false;
         }
+        return user;
     }
     
     //working

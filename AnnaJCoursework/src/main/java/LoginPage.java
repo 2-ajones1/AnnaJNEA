@@ -192,14 +192,7 @@ public class LoginPage extends javax.swing.JFrame {
         String password = String.valueOf(pswfPassword.getPassword());
         String username = tfUsername.getText();
         DatabaseAccess db = new DatabaseAccess();
-        if(db.logIn(username, password)){
-            String email = db.getEmail(username);
-            User currentUser = new User(username, email, password);
-            new HomePage().setVisible(true);
-            this.dispose();
-        }else{
-            lblError.setText("Login details incorrect");
-        }
+        User user = db.logIn(username, password);
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
