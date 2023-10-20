@@ -193,6 +193,12 @@ public class LoginPage extends javax.swing.JFrame {
         String username = tfUsername.getText();
         DatabaseAccess db = new DatabaseAccess();
         User user = db.logIn(username, password);
+        if(db.verifyUser(user.getEmail(), user.getUsername(), password)){
+            this.dispose();
+        }else{
+            lblError.setText("Login details incorrect");
+        }
+        
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed

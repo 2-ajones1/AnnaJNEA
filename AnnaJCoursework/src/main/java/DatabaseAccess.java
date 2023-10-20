@@ -279,7 +279,7 @@ public class DatabaseAccess {
                     DBpassword = rs.getString(1);
                 }
                 if (DBpassword.equals(password)) {
-                    sqlStatement = "SELECT Email WHERE Username = '" + username + "';";
+                    sqlStatement = "SELECT UserEmail FROM Users WHERE Username = '" + username + "';";
                     rs = statement.executeQuery(sqlStatement);
                     ResultSetMetaData rsmd = rs.getMetaData();
                     int columnCount = rsmd.getColumnCount();
@@ -291,6 +291,9 @@ public class DatabaseAccess {
                     }
                     String email = userInfo.get(0);
                     user = new User(username, email);
+                    HomePage home = new HomePage(user);
+                    home.setVisible(true);
+                    
                 }
 
             }

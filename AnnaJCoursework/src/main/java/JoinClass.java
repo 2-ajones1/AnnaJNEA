@@ -9,12 +9,14 @@
  * @author Anna
  */
 public class JoinClass extends javax.swing.JFrame {
+    static User user;
 
     /**
      * Creates new form JoinClass
      */
-    public JoinClass() {
+    public JoinClass(User user) {
         initComponents();
+        this.user = user;
     }
 
     /**
@@ -115,7 +117,7 @@ public class JoinClass extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        new ClassesHome().setVisible(true);
+        new ClassesHome(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -149,7 +151,7 @@ public class JoinClass extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JoinClass().setVisible(true);
+                new JoinClass(user).setVisible(true);
             }
         });
     }

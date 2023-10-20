@@ -9,12 +9,14 @@
  * @author 2-ajones1
  */
 public class ClassesHome extends javax.swing.JFrame {
+    static User user;
 
     /**
      * Creates new form ClassesHome
      */
-    public ClassesHome() {
+    public ClassesHome(User user) {
         initComponents();
+        this.user = user;
     }
 
     /**
@@ -113,19 +115,19 @@ public class ClassesHome extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        new AccountHome().setVisible(true);
+        new AccountHome(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnJoinClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJoinClassActionPerformed
         // TODO add your handling code here:
-        new JoinClass().setVisible(true);
+        new JoinClass(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnJoinClassActionPerformed
 
     private void btnCreateClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateClassActionPerformed
         // TODO add your handling code here:
-        new CreateNew().setVisible(true);
+        new CreateNew(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCreateClassActionPerformed
 
@@ -159,7 +161,7 @@ public class ClassesHome extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ClassesHome().setVisible(true);
+                new ClassesHome(user).setVisible(true);
             }
         });
     }

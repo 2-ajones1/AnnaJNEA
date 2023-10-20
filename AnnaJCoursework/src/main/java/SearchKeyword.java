@@ -12,12 +12,14 @@ import java.util.ArrayList;
  * @author Anna
  */
 public class SearchKeyword extends javax.swing.JFrame {
+    static User user;
 
     /**
      * Creates new form SearchKeyword
      */
-    public SearchKeyword() {
+    public SearchKeyword(User user) {
         initComponents();
+        this.user = user;
     }
 
     /**
@@ -129,7 +131,7 @@ public class SearchKeyword extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        new HomePage().setVisible(true);
+        new HomePage(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -174,7 +176,7 @@ public class SearchKeyword extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SearchKeyword().setVisible(true);
+                new SearchKeyword(user).setVisible(true);
             }
         });
     }

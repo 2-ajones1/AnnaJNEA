@@ -9,12 +9,14 @@
  * @author Anna
  */
 public class CreateNew extends javax.swing.JFrame {
+    static User user;
 
     /**
      * Creates new form CreateNew
      */
-    public CreateNew() {
+    public CreateNew(User user) {
         initComponents();
+        this.user = user;
     }
 
     /**
@@ -120,7 +122,7 @@ public class CreateNew extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        new ClassesHome().setVisible(true);
+        new ClassesHome(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -160,7 +162,7 @@ public class CreateNew extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CreateNew().setVisible(true);
+                new CreateNew(user).setVisible(true);
             }
         });
     }

@@ -9,12 +9,14 @@
  * @author Anna
  */
 public class Calculations extends javax.swing.JFrame {
+    static User user;
 
     /**
      * Creates new form Calculations
      */
-    public Calculations() {
+    public Calculations(User user) {
         initComponents();
+        this.user = user;
     }
 
     /**
@@ -291,7 +293,7 @@ public class Calculations extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        new CalcsOrPeriod().setVisible(true);
+        new CalcsOrPeriod(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -345,7 +347,7 @@ public class Calculations extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Calculations().setVisible(true);
+                new Calculations(user).setVisible(true);
             }
         });
     }

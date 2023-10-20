@@ -9,12 +9,14 @@
  * @author 2-ajones1
  */
 public class HomePage extends javax.swing.JFrame {
+    static User user;
 
     /**
      * Creates new form HomePage
      */
-    public HomePage() {
+    public HomePage(User user) {
         initComponents();
+        this.user = user;
     }
 
     /**
@@ -165,7 +167,7 @@ public class HomePage extends javax.swing.JFrame {
 
     private void btnCalcsPeriodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcsPeriodActionPerformed
         // TODO add your handling code here:
-        new CalcsOrPeriod().setVisible(true);
+        new CalcsOrPeriod(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCalcsPeriodActionPerformed
 
@@ -182,7 +184,7 @@ public class HomePage extends javax.swing.JFrame {
 
     private void btnInfoPagesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfoPagesActionPerformed
         // TODO add your handling code here:
-        new SearchKeyword().setVisible(true);
+        new SearchKeyword(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnInfoPagesActionPerformed
 
@@ -194,7 +196,7 @@ public class HomePage extends javax.swing.JFrame {
 
     private void btnAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccountActionPerformed
         // TODO add your handling code here:
-        new AccountHome().setVisible(true);
+        new AccountHome(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAccountActionPerformed
 
@@ -228,7 +230,7 @@ public class HomePage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HomePage().setVisible(true);
+                new HomePage(user).setVisible(true);
             }
         });
     }

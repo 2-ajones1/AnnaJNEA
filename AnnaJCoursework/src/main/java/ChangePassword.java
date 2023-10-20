@@ -9,12 +9,14 @@
  * @author Anna
  */
 public class ChangePassword extends javax.swing.JFrame {
+    static User user;
 
     /**
      * Creates new form ChangePassword
      */
-    public ChangePassword() {
+    public ChangePassword(User user) {
         initComponents();
+        this.user = user;
     }
 
     /**
@@ -149,7 +151,7 @@ public class ChangePassword extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        new AccountHome().setVisible(true);
+        new AccountHome(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -191,7 +193,7 @@ public class ChangePassword extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChangePassword().setVisible(true);
+                new ChangePassword(user).setVisible(true);
             }
         });
     }

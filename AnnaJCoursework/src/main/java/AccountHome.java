@@ -9,12 +9,14 @@
  * @author 2-ajones1
  */
 public class AccountHome extends javax.swing.JFrame {
+    static User user;
 
     /**
      * Creates new form AccountHome
      */
-    public AccountHome() {
+    public AccountHome(User user) {
         initComponents();
+        this.user = user;
     }
 
     /**
@@ -153,31 +155,31 @@ public class AccountHome extends javax.swing.JFrame {
 
     private void btnChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePasswordActionPerformed
         // TODO add your handling code here:
-        new ChangePassword().setVisible(true);
+        new ChangePassword(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnChangePasswordActionPerformed
 
     private void btnChangeUserEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeUserEmailActionPerformed
         // TODO add your handling code here:
-        new UserOrEmail().setVisible(true);
+        new UserOrEmail(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnChangeUserEmailActionPerformed
 
     private void btnDeleteAccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteAccActionPerformed
         // TODO add your handling code here:
-        new DeleteAccount().setVisible(true);
+        new DeleteAccount(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnDeleteAccActionPerformed
 
     private void btnClassesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClassesActionPerformed
         // TODO add your handling code here:
-        new ClassesHome().setVisible(true);
+        new ClassesHome(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnClassesActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        new HomePage().setVisible(true);
+        new HomePage(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -211,7 +213,7 @@ public class AccountHome extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AccountHome().setVisible(true);
+                new AccountHome(user).setVisible(true);
             }
         });
     }

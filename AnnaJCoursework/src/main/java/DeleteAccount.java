@@ -9,12 +9,14 @@
  * @author Anna
  */
 public class DeleteAccount extends javax.swing.JFrame {
+    static User user;
 
     /**
      * Creates new form DeleteAccount
      */
-    public DeleteAccount() {
+    public DeleteAccount(User user) {
         initComponents();
+        this.user = user;
     }
 
     /**
@@ -165,7 +167,7 @@ public class DeleteAccount extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        new AccountHome().setVisible(true);
+        new AccountHome(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -199,7 +201,7 @@ public class DeleteAccount extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DeleteAccount().setVisible(true);
+                new DeleteAccount(user).setVisible(true);
             }
         });
     }

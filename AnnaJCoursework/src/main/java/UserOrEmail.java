@@ -9,12 +9,14 @@
  * @author 2-ajones1
  */
 public class UserOrEmail extends javax.swing.JFrame {
+    static User user;
 
     /**
      * Creates new form UserOrEmail
      */
-    public UserOrEmail() {
+    public UserOrEmail(User user) {
         initComponents();
+        this.user = user;
     }
 
     /**
@@ -116,19 +118,19 @@ public class UserOrEmail extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        new AccountHome().setVisible(true);
+        new AccountHome(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnChangeUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeUserActionPerformed
         // TODO add your handling code here:
-        new ChangeUser().setVisible(true);
+        new ChangeUser(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnChangeUserActionPerformed
 
     private void btnChangeEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeEmailActionPerformed
         // TODO add your handling code here:
-        new ChangeEmail().setVisible(true);
+        new ChangeEmail(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnChangeEmailActionPerformed
 
@@ -162,7 +164,7 @@ public class UserOrEmail extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UserOrEmail().setVisible(true);
+                new UserOrEmail(user).setVisible(true);
             }
         });
     }

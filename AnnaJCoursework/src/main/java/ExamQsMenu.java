@@ -9,12 +9,14 @@
  * @author 2-ajones1
  */
 public class ExamQsMenu extends javax.swing.JFrame {
+    static User user;
 
     /**
      * Creates new form ExamQsMenu
      */
     public ExamQsMenu() {
         initComponents();
+        this.user = user;
     }
 
     /**
@@ -127,7 +129,7 @@ public class ExamQsMenu extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        new HomePage().setVisible(true);
+        new HomePage(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 

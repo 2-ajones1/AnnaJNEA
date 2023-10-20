@@ -9,12 +9,14 @@
  * @author Anna
  */
 public class ChangeEmail extends javax.swing.JFrame {
+    static User user;
 
     /**
      * Creates new form ChangeEmail
      */
-    public ChangeEmail() {
+    public ChangeEmail(User user) {
         initComponents();
+        this.user = user;
     }
 
     /**
@@ -155,7 +157,7 @@ public class ChangeEmail extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        new UserOrEmail().setVisible(true);
+        new UserOrEmail(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -197,7 +199,7 @@ public class ChangeEmail extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChangeEmail().setVisible(true);
+                new ChangeEmail(user).setVisible(true);
             }
         });
     }

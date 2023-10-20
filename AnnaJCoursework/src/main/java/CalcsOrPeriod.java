@@ -9,12 +9,14 @@
  * @author 2-ajones1
  */
 public class CalcsOrPeriod extends javax.swing.JFrame {
+    static User user;
 
     /**
      * Creates new form CalcsOrPeriod
      */
-    public CalcsOrPeriod() {
+    public CalcsOrPeriod(User user) {
         initComponents();
+        this.user = user;
     }
 
     /**
@@ -113,19 +115,19 @@ public class CalcsOrPeriod extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        new HomePage().setVisible(true);
+        new HomePage(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnCalculationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculationsActionPerformed
         // TODO add your handling code here:
-        new Calculations().setVisible(true);
+        new Calculations(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCalculationsActionPerformed
 
     private void btnPeriodsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPeriodsActionPerformed
         // TODO add your handling code here:
-        new Periodicity().setVisible(true);
+        new Periodicity(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPeriodsActionPerformed
 
@@ -159,7 +161,7 @@ public class CalcsOrPeriod extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CalcsOrPeriod().setVisible(true);
+                new CalcsOrPeriod(user).setVisible(true);
             }
         });
     }
