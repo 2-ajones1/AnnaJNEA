@@ -11,6 +11,14 @@
 public class User{
     
     private static String username;
+
+    public static void setUsername(String username) {
+        User.username = username;
+    }
+
+    public static void setUserEmail(String userEmail) {
+        User.userEmail = userEmail;
+    }
     private static String userEmail;
     private static String userID;
     private static DatabaseAccess userDB;

@@ -12,13 +12,18 @@ import java.util.ArrayList;
  * @author 2-ajones1
  */
 public class ExamQuestion extends javax.swing.JFrame {
+    static User user;
+    static ArrayList examQ;
+    static String studentAnswer;
 
     /**
      * Creates new form ExamQuestion
      */
-    public ExamQuestion() {
+    public ExamQuestion(User user) {
         initComponents();
+        this.user = user;
         ArrayList<String> examQ = new DatabaseAccess().getExamQuestion(1);
+        this.examQ = examQ;
         String question = examQ.get(0);
         String marks = examQ.get(1);
         String topic = examQ.get(2);
@@ -140,6 +145,9 @@ public class ExamQuestion extends javax.swing.JFrame {
 
     private void btnMarkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarkActionPerformed
         // TODO add your handling code here:
+        this.studentAnswer = taAnswer.getText();
+        new ExamQMark(user, examQ, studentAnswer).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnMarkActionPerformed
 
     private void lblExamQuestionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblExamQuestionKeyPressed
@@ -182,7 +190,7 @@ public class ExamQuestion extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ExamQuestion().setVisible(true);
+                new ExamQuestion(user).setVisible(true);
             }
         });
     }

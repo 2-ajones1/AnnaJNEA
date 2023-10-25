@@ -135,19 +135,19 @@ public class ExamQsMenu extends javax.swing.JFrame {
 
     private void btnTopicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTopicActionPerformed
         // TODO add your handling code here:
-        new ExamQuestion().setVisible(true);
+        new ExamQuestion(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnTopicActionPerformed
 
     private void btnAccuracyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccuracyActionPerformed
         // TODO add your handling code here:
-        new ExamQuestion().setVisible(true);
+        new ExamQuestion(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAccuracyActionPerformed
 
     private void btnRandomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRandomActionPerformed
         // TODO add your handling code here:
-        new ExamQuestion().setVisible(true);
+        new ExamQuestion(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRandomActionPerformed
 

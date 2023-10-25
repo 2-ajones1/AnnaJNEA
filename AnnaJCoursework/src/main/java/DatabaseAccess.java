@@ -146,6 +146,24 @@ public class DatabaseAccess {
         return "";
     }
     
+    public static String getClassName(String classCode){
+        try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
+            String sqlStatement = "SELECT ClassName FROM Classes WHERE ClassCode = '" + classCode + "';";
+            ResultSet rs = null;
+            try(Statement statement = con.createStatement()){
+                statement.execute(sqlStatement);
+                rs = statement.executeQuery(sqlStatement);
+                if(rs.next()){
+                    return rs.getString(1);
+                }
+            }
+            con.close();
+        }catch (Exception e){
+            System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
+        }
+        return "";
+    }
+    
     public static ArrayList<String> getListOfExamQIDs(){
         ArrayList<String> examQIDs = new ArrayList<> ();
         try ( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)) {
@@ -196,7 +214,7 @@ public class DatabaseAccess {
                 String topicID = topicIDs.get(0);
                 System.out.println(examQID);
                 System.out.println(topicID);
-                sqlStatement = "SELECT Question, MarksAvailable, TopicName FROM ExamQuestions, Topics WHERE ExamQuestions.ExamQID = '" + examQID + "' AND Topics.TopicID = '" + topicID + "';";
+                sqlStatement = "SELECT Question, MarksAvailable, TopicName, Answer, ExamQID FROM ExamQuestions, Topics WHERE ExamQuestions.ExamQID = '" + examQID + "' AND Topics.TopicID = '" + topicID + "';";
                 System.out.println(sqlStatement);
                 try ( Statement statement = con.createStatement()) {
                     statement.execute(sqlStatement);
@@ -216,6 +234,19 @@ public class DatabaseAccess {
             }
         }
         return examQuestion;
+    }
+    
+    public static void setAnalytics(String userID, String examQID, double marksAwarded, double marksAvailable){
+        double percentAccuracy = (marksAwarded/marksAvailable) * 100;
+        try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
+            String sqlStatement = "INSERT INTO Analytics VALUES ('" + userID + "', '" + examQID + "', " + marksAwarded + ", " + percentAccuracy + ");";
+            try(Statement statement = con.createStatement()){
+                statement.execute(sqlStatement);
+            }
+            con.close();
+        }catch (Exception e){
+            System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
+        }
     }
 
     //working
@@ -242,7 +273,7 @@ public class DatabaseAccess {
     }
     
     //working
-    public static void createClass(String name){
+    public static void createClass(String name, User user){
         Random rand = new Random();
         String classID = "CL";
         for(int x = 0; x < 4; x++){
@@ -259,9 +290,41 @@ public class DatabaseAccess {
                 statement.execute(sqlStatement);
                 System.out.println("Success");
             }
+            sqlStatement = "INSERT INTO ClassMembers VALUES ('" + user.getUserID() + "', '" + classID + "')";
+            System.out.println(sqlStatement);
+            try(Statement statement = con.createStatement()){
+                statement.execute(sqlStatement);
+                System.out.println("Success");
+            }
             con.close();
         }catch (Exception e){
             System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
+        }
+    }
+    
+    public static boolean joinClass(String classCode, User user){
+        ResultSet rs = null;
+        String classID = "";
+        try( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)){
+            String sqlStatement = ("SELECT ClassID FROM Classes WHERE ClassCode = '" + classCode + "';");
+            System.out.println(sqlStatement);
+            try(Statement statement = con.createStatement()){
+                rs = statement.executeQuery(sqlStatement);
+                if (rs.next()) {
+                    classID = rs.getString(1);
+                }
+            }
+            sqlStatement = "INSERT INTO ClassMembers VALUES ('" + user.getUserID() + "', '" + classID + "')";
+            System.out.println(sqlStatement);
+            try(Statement statement = con.createStatement()){
+                statement.execute(sqlStatement);
+                System.out.println("Success");
+            }
+            con.close();
+            return true;
+        }catch (Exception e){
+            System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
+            return false;
         }
     }
     

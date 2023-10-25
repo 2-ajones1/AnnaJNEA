@@ -34,6 +34,7 @@ public class JoinClass extends javax.swing.JFrame {
         tfClassCode = new javax.swing.JTextField();
         btnJoinClass = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        lblMessages = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,6 +63,11 @@ public class JoinClass extends javax.swing.JFrame {
 
         btnJoinClass.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnJoinClass.setText("Join Class");
+        btnJoinClass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnJoinClassActionPerformed(evt);
+            }
+        });
 
         btnBack.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnBack.setText("Back");
@@ -71,6 +77,9 @@ public class JoinClass extends javax.swing.JFrame {
             }
         });
 
+        lblMessages.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblMessages.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,12 +88,6 @@ public class JoinClass extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblJoinClass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblClassCode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tfClassCode)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(251, 251, 251)
@@ -92,7 +95,14 @@ public class JoinClass extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(btnBack)))
-                        .addGap(0, 240, Short.MAX_VALUE)))
+                        .addGap(0, 240, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblJoinClass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblClassCode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tfClassCode)
+                            .addComponent(lblMessages, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -105,9 +115,11 @@ public class JoinClass extends javax.swing.JFrame {
                 .addComponent(lblClassCode)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tfClassCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
+                .addGap(18, 18, 18)
+                .addComponent(lblMessages)
+                .addGap(31, 31, 31)
                 .addComponent(btnJoinClass)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                 .addComponent(btnBack)
                 .addContainerGap())
         );
@@ -120,6 +132,17 @@ public class JoinClass extends javax.swing.JFrame {
         new ClassesHome(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnJoinClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJoinClassActionPerformed
+        // TODO add your handling code here:
+        String classCode = tfClassCode.getText();
+        if(new DatabaseAccess().joinClass(classCode, user)){
+            String className = new DatabaseAccess().getClassName(classCode);
+            lblMessages.setText("Successfully joined " + className);
+        }else{
+            lblMessages.setText("Something went wrong...");
+        }
+    }//GEN-LAST:event_btnJoinClassActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,6 +185,7 @@ public class JoinClass extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblClassCode;
     private javax.swing.JLabel lblJoinClass;
+    private javax.swing.JLabel lblMessages;
     private javax.swing.JTextField tfClassCode;
     // End of variables declaration//GEN-END:variables
 }

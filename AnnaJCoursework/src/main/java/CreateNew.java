@@ -129,7 +129,7 @@ public class CreateNew extends javax.swing.JFrame {
     private void btnCreateClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateClassActionPerformed
         // TODO add your handling code here:
         String className = tfClassName.getText();
-        new DatabaseAccess().createClass(className);
+        new DatabaseAccess().createClass(className, user);
     }//GEN-LAST:event_btnCreateClassActionPerformed
 
     /**
