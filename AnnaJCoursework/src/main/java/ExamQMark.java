@@ -181,6 +181,8 @@ public class ExamQMark extends javax.swing.JFrame {
         // TODO add your handling code here:
         int marksAwarded = Integer.valueOf(tfMarksAwarded.getText());
         new DatabaseAccess().setAnalytics(user.getUserID(), examQID, marksAwarded, marks);
+        new ExamQuestion(user).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnNextActionPerformed
 
     /**

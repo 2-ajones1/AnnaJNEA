@@ -9,6 +9,7 @@
  * @author Anna
  */
 public class Calculations extends javax.swing.JFrame {
+
     static User user;
 
     /**
@@ -37,22 +38,8 @@ public class Calculations extends javax.swing.JFrame {
         tfVal2 = new javax.swing.JTextField();
         lblResult = new javax.swing.JLabel();
         lblUnits = new javax.swing.JLabel();
-        lblExplanation = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         lblResultResult = new javax.swing.JLabel();
-        lblExplanationText = new javax.swing.JLabel();
-        lblValue3 = new javax.swing.JLabel();
-        lblValue4 = new javax.swing.JLabel();
-        lblValue5 = new javax.swing.JLabel();
-        lblValue6 = new javax.swing.JLabel();
-        cbVal3 = new javax.swing.JComboBox<>();
-        cbVal4 = new javax.swing.JComboBox<>();
-        cbVal5 = new javax.swing.JComboBox<>();
-        cbVal6 = new javax.swing.JComboBox<>();
-        tfVal3 = new javax.swing.JTextField();
-        tfVal4 = new javax.swing.JTextField();
-        tfVal5 = new javax.swing.JTextField();
-        tfVal6 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnCalculate = new javax.swing.JButton();
 
@@ -75,7 +62,7 @@ public class Calculations extends javax.swing.JFrame {
         lblVal1.setText("Value 1:");
 
         cbVal1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbVal1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Density/ g dm^-3", "Energy/ J", "Enthalpy change/ J mol^-1", "Frequency/ Hz", "Mass/ g", "Moles", "Mr", "Pressure/ Pa", "Specific heat capacity/J g^-1 K^-1", "Temperature/ K", "Volume/dm^3", "Wavelength/ m" }));
+        cbVal1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Density/ g dm^-3", "Energy/ J", "Enthalpy change/ J mol^-1", "Frequency/ Hz", "Mass/ g", "Moles", "Mr", "Pressure/ Pa", "Specific heat capacity/ J g^-1 K^-1", "Temperature/ K", "Volume/ dm^3", "Wavelength/ m", "Gas Constant/ J mol^1 K^1", "Planck Constant/ J Hz^-1", "Speed of Light/ m s^-1" }));
         cbVal1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbVal1ActionPerformed(evt);
@@ -89,6 +76,11 @@ public class Calculations extends javax.swing.JFrame {
 
         cbVal2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         cbVal2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Density/ g dm^-3", "Energy/ J", "Enthalpy change/ J mol^-1", "Frequency/ Hz", "Mass/ g", "Moles", "Mr", "Pressure/ Pa", "Specific heat capacity/J g^-1 K^-1", "Temperature/ K", "Volume/dm^3", "Wavelength/ m" }));
+        cbVal2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbVal2ActionPerformed(evt);
+            }
+        });
 
         tfVal2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
@@ -97,9 +89,6 @@ public class Calculations extends javax.swing.JFrame {
 
         lblUnits.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblUnits.setText("<units>");
-
-        lblExplanation.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblExplanation.setText("Explanation:");
 
         btnBack.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnBack.setText("Back");
@@ -111,41 +100,6 @@ public class Calculations extends javax.swing.JFrame {
 
         lblResultResult.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblResultResult.setText("<result>");
-
-        lblExplanationText.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblExplanationText.setText("<explanation>");
-
-        lblValue3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lblValue3.setText("Value 3:");
-
-        lblValue4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lblValue4.setText("Value 4:");
-
-        lblValue5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lblValue5.setText("Value 5:");
-
-        lblValue6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lblValue6.setText("Value 6:");
-
-        cbVal3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbVal3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Density/ g dm^-3", "Energy/ J", "Enthalpy change/ J mol^-1", "Frequency/ Hz", "Mass/ g", "Moles", "Mr", "Pressure/ Pa", "Specific heat capacity/J g^-1 K^-1", "Temperature/ K", "Volume/dm^3", "Wavelength/ m" }));
-
-        cbVal4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbVal4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Density/ g dm^-3", "Energy/ J", "Enthalpy change/ J mol^-1", "Frequency/ Hz", "Mass/ g", "Moles", "Mr", "Pressure/ Pa", "Specific heat capacity/J g^-1 K^-1", "Temperature/ K", "Volume/dm^3", "Wavelength/ m" }));
-
-        cbVal5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbVal5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Density/ g dm^-3", "Energy/ J", "Enthalpy change/ J mol^-1", "Frequency/ Hz", "Mass/ g", "Moles", "Mr", "Pressure/ Pa", "Specific heat capacity/J g^-1 K^-1", "Temperature/ K", "Volume/dm^3", "Wavelength/ m" }));
-
-        cbVal6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbVal6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Density/ g dm^-3", "Energy/ J", "Enthalpy change/ J mol^-1", "Frequency/ Hz", "Mass/ g", "Moles", "Mr", "Pressure/ Pa", "Specific heat capacity/J g^-1 K^-1", "Temperature/ K", "Volume/dm^3", "Wavelength/ m" }));
-
-        tfVal3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-
-        tfVal4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-
-        tfVal5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-
-        tfVal6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel1.setText("Select your values and type their numbers");
@@ -166,77 +120,43 @@ public class Calculations extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(lblVal2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cbVal2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(lblVal1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cbVal1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblValue3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cbVal3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(tfVal3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblValue4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cbVal4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(tfVal4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblValue5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cbVal5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(tfVal5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblValue6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cbVal6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(tfVal6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                            .addComponent(tfVal1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfVal2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                .addComponent(lblVal2)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(cbVal2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                .addComponent(lblVal1)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(cbVal1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(tfVal1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(tfVal2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(lblExplanation))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(btnCalculate)
-                                        .addGap(102, 102, 102))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblResult)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblResultResult)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblUnits, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnBack)
-                                    .addComponent(lblExplanationText))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())))
+                                .addComponent(btnCalculate)
+                                .addGap(102, 102, 102))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblResult)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblResultResult)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblUnits, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnBack)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {lblVal1, lblVal2, lblValue3, lblValue4, lblValue5, lblValue6});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {lblVal1, lblVal2});
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cbVal1, cbVal2, cbVal3, cbVal4, cbVal5, cbVal6});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cbVal1, cbVal2});
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {tfVal1, tfVal2, tfVal3, tfVal4, tfVal5, tfVal6});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {tfVal1, tfVal2});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,36 +174,12 @@ public class Calculations extends javax.swing.JFrame {
                     .addComponent(cbVal2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfVal2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCalculate))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblValue3)
-                    .addComponent(cbVal3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfVal3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblValue4)
-                    .addComponent(cbVal4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfVal4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblValue5)
-                    .addComponent(cbVal5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfVal5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblValue6)
-                    .addComponent(cbVal6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfVal6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 166, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblResult)
                     .addComponent(lblResultResult)
                     .addComponent(lblUnits))
-                .addGap(15, 15, 15)
-                .addComponent(lblExplanation)
-                .addGap(30, 30, 30)
-                .addComponent(lblExplanationText)
-                .addGap(18, 18, 18)
+                .addGap(91, 91, 91)
                 .addComponent(btnBack)
                 .addContainerGap())
         );
@@ -301,21 +197,53 @@ public class Calculations extends javax.swing.JFrame {
         // TODO add your handling code here:
         String value1 = String.valueOf(cbVal1.getSelectedItem());
         String value2 = String.valueOf(cbVal2.getSelectedItem());
-        if(value1.contains("/")){
+        double number1 = Double.valueOf(tfVal1.getText());
+        double number2 = Double.valueOf(tfVal2.getText());
+        if (value1.contains("/")) {
             String[] parts = value1.split("/");
             value1 = parts[0];
         }
-        if(value2.contains("/")){
+        if (value2.contains("/")) {
             String[] parts = value2.split("/");
             value2 = parts[0];
         }
-        String[] values = {value1, value2};
-        new DatabaseAccess().getEquation(values);
+        int[] positions = new DatabaseAccess().calculate(value1, value2);
+        double result = new Calculator().calculate(positions, number1, number2);
+        String units = new DatabaseAccess().getUnits(positions, value1, value2);
+        lblResultResult.setText(String.valueOf(result));
+        lblUnits.setText(units);
     }//GEN-LAST:event_btnCalculateActionPerformed
 
     private void cbVal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbVal1ActionPerformed
         // TODO add your handling code here:
+        String value = String.valueOf(cbVal1.getSelectedItem());
+        if (value.contains("/")) {
+            String[] parts = value.split("/");
+            value = parts[0];
+        }
+        if (value.equals("Gas Constant") || value.equals("Planck Constant") || value.equals("Speed of Light")) {
+            tfVal1.setEditable(false);
+            tfVal1.setToolTipText("This is a constant, so you don't have to put it in yourself! We've got it covered :)");
+        } else {
+            tfVal1.setEditable(true);
+            tfVal1.setToolTipText("");
+        }
     }//GEN-LAST:event_cbVal1ActionPerformed
+
+    private void cbVal2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbVal2ActionPerformed
+        // TODO add your handling code here:
+        String value = String.valueOf(cbVal1.getSelectedItem());
+        if (value.contains("/")) {
+            String[] parts = value.split("/");
+            value = parts[0];
+        }
+        if (value.equals("Gas Constant") || value.equals("Planck Constant") || value.equals("Speed of Light")) {
+            tfVal1.setEditable(false);
+            tfVal1.setToolTipText("This is a constant, so you don't have to put it in yourself! We've got it covered :)");
+        } else {
+            tfVal1.setEditable(true);
+        }
+    }//GEN-LAST:event_cbVal2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -357,28 +285,14 @@ public class Calculations extends javax.swing.JFrame {
     private javax.swing.JButton btnCalculate;
     private javax.swing.JComboBox<String> cbVal1;
     private javax.swing.JComboBox<String> cbVal2;
-    private javax.swing.JComboBox<String> cbVal3;
-    private javax.swing.JComboBox<String> cbVal4;
-    private javax.swing.JComboBox<String> cbVal5;
-    private javax.swing.JComboBox<String> cbVal6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblExplanation;
-    private javax.swing.JLabel lblExplanationText;
     private javax.swing.JLabel lblResult;
     private javax.swing.JLabel lblResultResult;
     private javax.swing.JLabel lblUnits;
     private javax.swing.JLabel lblVal1;
     private javax.swing.JLabel lblVal2;
-    private javax.swing.JLabel lblValue3;
-    private javax.swing.JLabel lblValue4;
-    private javax.swing.JLabel lblValue5;
-    private javax.swing.JLabel lblValue6;
     private javax.swing.JTextField tfVal1;
     private javax.swing.JTextField tfVal2;
-    private javax.swing.JTextField tfVal3;
-    private javax.swing.JTextField tfVal4;
-    private javax.swing.JTextField tfVal5;
-    private javax.swing.JTextField tfVal6;
     // End of variables declaration//GEN-END:variables
 }
