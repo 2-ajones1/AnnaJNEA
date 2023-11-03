@@ -25,4 +25,22 @@ public class Calculator {
         return result;
     }
     
+    public static int findLCM(int number1, int number2){
+        int x = 0;
+        int lcm = 0;
+        if(number1 > number2){
+            x = number1;
+        }else{
+            x = number2;
+        }
+        while(true){
+            if((x % number1 == 0) && (x % number2 == 0)){
+                lcm = x;
+                break;
+            }
+            x++;
+        }
+        return lcm;
+    }
+    
 }

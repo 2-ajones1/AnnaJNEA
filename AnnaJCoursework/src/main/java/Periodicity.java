@@ -30,9 +30,9 @@ public class Periodicity extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         lblGroup = new javax.swing.JLabel();
-        cbGroup = new javax.swing.JComboBox<>();
+        cbPos = new javax.swing.JComboBox<>();
         lblIon = new javax.swing.JLabel();
-        cbIon = new javax.swing.JComboBox<>();
+        cbNeg = new javax.swing.JComboBox<>();
         lblProperty = new javax.swing.JLabel();
         cbProperty = new javax.swing.JComboBox<>();
         lblFormulae = new javax.swing.JLabel();
@@ -41,6 +41,9 @@ public class Periodicity extends javax.swing.JFrame {
         lblExplanation = new javax.swing.JLabel();
         lblTrendText = new javax.swing.JLabel();
         btnCalculate = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        lblFormula = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,24 +61,24 @@ public class Periodicity extends javax.swing.JFrame {
         );
 
         lblGroup.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lblGroup.setText("Group:");
+        lblGroup.setText("Positive Ion or Group:");
 
-        cbGroup.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbGroup.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Group 1", "Group 2", "Group 3", "Group 4", "Group 5", "Group 6", "Group 7", "Group 8" }));
-        cbGroup.addActionListener(new java.awt.event.ActionListener() {
+        cbPos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        cbPos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Group 1 Metals", "Group 2 Metals", "Group 3 Metals", "H +", "NH4 +", "Pb 2+", "Cu 2+", "Zn 2+" }));
+        cbPos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbGroupActionPerformed(evt);
+                cbPosActionPerformed(evt);
             }
         });
 
         lblIon.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lblIon.setText("Ion:");
+        lblIon.setText("Negative Ion or Group:");
 
-        cbIon.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbIon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No Ion Selected", "OH-", "CO3 2+", "SO4 2-" }));
-        cbIon.addActionListener(new java.awt.event.ActionListener() {
+        cbNeg.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        cbNeg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Group 7", "OH -", "NO3 -", "HCO3 -", "O 2-", "CO3 2-", "SO4 2-" }));
+        cbNeg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbIonActionPerformed(evt);
+                cbNegActionPerformed(evt);
             }
         });
 
@@ -107,6 +110,20 @@ public class Periodicity extends javax.swing.JFrame {
 
         btnCalculate.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnCalculate.setText("Calculate");
+        btnCalculate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalculateActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel1.setText("Formula:");
+
+        lblFormula.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblFormula.setText("<formula>");
+
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
+        jLabel3.setText("(X denotes a positive metal ion from the group chosen, and Y denotes a negative ion from the group chosen)");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,8 +135,8 @@ public class Periodicity extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblExplanation)
-                            .addComponent(lblTrendText))
+                            .addComponent(lblTrendText)
+                            .addComponent(lblExplanation))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,16 +149,22 @@ public class Periodicity extends javax.swing.JFrame {
                                             .addComponent(lblGroup, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(lblIon, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(lblProperty, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(cbGroup, 0, 235, Short.MAX_VALUE)
-                                            .addComponent(cbIon, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(cbPos, 0, 235, Short.MAX_VALUE)
+                                            .addComponent(cbNeg, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(cbProperty, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                 .addGap(197, 197, 197)
                                 .addComponent(btnCalculate))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnBack)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblFormula)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3)))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -151,25 +174,31 @@ public class Periodicity extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblGroup)
-                    .addComponent(cbGroup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbPos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblIon)
-                    .addComponent(cbIon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbNeg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCalculate))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblProperty)
                     .addComponent(cbProperty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lblFormula))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(lblFormulae)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblExplanation)
-                .addGap(60, 60, 60)
+                .addGap(42, 42, 42)
                 .addComponent(lblTrend)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTrendText)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addGap(45, 45, 45)
                 .addComponent(btnBack)
                 .addContainerGap())
         );
@@ -183,23 +212,33 @@ public class Periodicity extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void cbIonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbIonActionPerformed
+    private void cbNegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbNegActionPerformed
         // TODO add your handling code here:
-        String selectedIon = String.valueOf(cbIon.getSelectedItem());
-        if (!(selectedIon.equals("No Ion Selected"))&& String.valueOf(cbGroup.getSelectedItem()).equals("Group 8")){
-            cbIon.setSelectedItem("No Ion Selected");
+        String selectedIon = String.valueOf(cbNeg.getSelectedItem());
+        if (!(selectedIon.equals("No Ion Selected"))&& String.valueOf(cbPos.getSelectedItem()).equals("Group 8")){
+            cbNeg.setSelectedItem("No Ion Selected");
             new DialogueBoxGrpAndIon().setVisible(true);
         }
-    }//GEN-LAST:event_cbIonActionPerformed
+    }//GEN-LAST:event_cbNegActionPerformed
 
-    private void cbGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbGroupActionPerformed
+    private void cbPosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPosActionPerformed
         // TODO add your handling code here:
-        String selectedIon = String.valueOf(cbIon.getSelectedItem());
-        if (!(selectedIon.equals("No Ion Selected"))&& String.valueOf(cbGroup.getSelectedItem()).equals("Group 8")){
-            cbIon.setSelectedItem("No Ion Selected");
+        String selectedIon = String.valueOf(cbNeg.getSelectedItem());
+        if (!(selectedIon.equals("No Ion Selected"))&& String.valueOf(cbPos.getSelectedItem()).equals("Group 8")){
+            cbNeg.setSelectedItem("No Ion Selected");
             new DialogueBoxGrpAndIon().setVisible(true);
         }
-    }//GEN-LAST:event_cbGroupActionPerformed
+    }//GEN-LAST:event_cbPosActionPerformed
+
+    private void btnCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateActionPerformed
+        // TODO add your handling code here:
+        String positiveName = String.valueOf(cbPos.getSelectedItem());
+        String negativeName = String.valueOf(cbNeg.getSelectedItem());
+        String[] result = new DatabaseAccess().periodicity(positiveName, negativeName);
+        //String[] result = {"formula","pos","neg","pcharge","ncharge","pA", "nA"};
+        lblFormula.setText(result[0]);
+        lblExplanation.setText("As "+ result[1] + " has a charge of "+ result[3] + " and "+ result[2] + " has a charge of "+ result[4] + " , there must be "+ result[5] + " of "+ result[1] + " and "+ result[6] + " of "+ result[2] + " to make the charges neutral.");
+    }//GEN-LAST:event_btnCalculateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,11 +278,14 @@ public class Periodicity extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCalculate;
-    private javax.swing.JComboBox<String> cbGroup;
-    private javax.swing.JComboBox<String> cbIon;
+    private javax.swing.JComboBox<String> cbNeg;
+    private javax.swing.JComboBox<String> cbPos;
     private javax.swing.JComboBox<String> cbProperty;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblExplanation;
+    private javax.swing.JLabel lblFormula;
     private javax.swing.JLabel lblFormulae;
     private javax.swing.JLabel lblGroup;
     private javax.swing.JLabel lblIon;
