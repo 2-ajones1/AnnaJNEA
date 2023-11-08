@@ -538,6 +538,7 @@ public class DatabaseAccess {
         //get valueIDs from their names
         try ( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)) {
             String sqlStatement = "SELECT TypeID FROM ValueTypes WHERE ValueName = '" + valueName1 + "';";
+            System.out.println(sqlStatement);
             ResultSet rs = null;
             try ( Statement statement = con.createStatement()) {
                 statement.execute(sqlStatement);
@@ -547,6 +548,7 @@ public class DatabaseAccess {
                 }
             }
             sqlStatement = "SELECT TypeID FROM ValueTypes WHERE ValueName = '" + valueName2 + "';";
+            System.out.println(sqlStatement);
             try ( Statement statement = con.createStatement()) {
                 statement.execute(sqlStatement);
                 rs = statement.executeQuery(sqlStatement);
@@ -571,6 +573,7 @@ public class DatabaseAccess {
             }
             //get positions
             sqlStatement = "SELECT Position FROM ValuePositions WHERE TypeID = '" + valueID1 + "' AND EquationID = '" + equationID + "'";
+            System.out.println(sqlStatement);
             try ( Statement statement = con.createStatement()) {
                 statement.execute(sqlStatement);
                 rs = statement.executeQuery(sqlStatement);
@@ -605,6 +608,7 @@ public class DatabaseAccess {
         //get valueIDs from their names
         try ( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)) {
             String sqlStatement = "SELECT TypeID FROM ValueTypes WHERE ValueName = '" + valueName1 + "';";
+            System.out.println(sqlStatement);
             ResultSet rs = null;
             try ( Statement statement = con.createStatement()) {
                 statement.execute(sqlStatement);
@@ -614,6 +618,7 @@ public class DatabaseAccess {
                 }
             }
             sqlStatement = "SELECT TypeID FROM ValueTypes WHERE ValueName = '" + valueName2 + "';";
+            System.out.println(sqlStatement);
             try ( Statement statement = con.createStatement()) {
                 statement.execute(sqlStatement);
                 rs = statement.executeQuery(sqlStatement);
@@ -645,6 +650,7 @@ public class DatabaseAccess {
                 typeIDNumber = "1";
             }
             sqlStatement = "SELECT TypeID" + typeIDNumber + " FROM Equations WHERE TypeID" + String.valueOf(positions[0]) + " = '" + valueID1 + "' AND TypeID" + String.valueOf(positions[1]) + " = '" + valueID2 + "';";
+            System.out.println(sqlStatement);
             try ( Statement statement = con.createStatement()) {
                 statement.execute(sqlStatement);
                 rs = statement.executeQuery(sqlStatement);
@@ -654,6 +660,7 @@ public class DatabaseAccess {
             }
             System.out.println(typeID);
             sqlStatement = "SELECT ValueUnits FROM ValueTypes WHERE TypeID = '" + typeID + "';";
+            System.out.println(sqlStatement);
             try ( Statement statement = con.createStatement()) {
                 statement.execute(sqlStatement);
                 rs = statement.executeQuery(sqlStatement);
@@ -709,9 +716,13 @@ public class DatabaseAccess {
             String negativeAtoms = String.valueOf(lcm/negativeCharge);
             if(positiveAtoms.equals("1")){
                 positiveAtoms = "";
+            }else if (positiveName.length() > 1){
+                positiveName = "(" + positiveName + ")";
             }
             if(negativeAtoms.equals("1")){
                 negativeAtoms = "";
+            }else if (negativeName.length() > 1){
+                negativeName = "(" + negativeName + ")";
             }
             //String[] result = {"formula","pos","neg","pcharge","ncharge","pA", "nA"};
             result[0] = (positiveName + positiveAtoms + negativeName + negativeAtoms);

@@ -34,6 +34,7 @@ public class ExamQMark extends javax.swing.JFrame {
         this.examQID = examQID;
         int intMarks = Integer.valueOf(marks);
         this.marks = intMarks;
+        lblMarks.setText(marks);
         lblQuestion.setText(question);
         lblTopic.setText(topic);
         lblAnswer.setText(answer);
@@ -60,6 +61,7 @@ public class ExamQMark extends javax.swing.JFrame {
         tfMarksAwarded = new javax.swing.JTextField();
         btnNext = new javax.swing.JButton();
         lblStudentAnswer = new javax.swing.JLabel();
+        lblMarks = new javax.swing.JLabel();
 
         jLabel3.setText("jLabel3");
 
@@ -135,13 +137,16 @@ public class ExamQMark extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(tfMarksAwarded, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(btnNext)
                 .addContainerGap())
         );
 
         lblStudentAnswer.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblStudentAnswer.setText("<Student Answer>");
+
+        lblMarks.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblMarks.setText("<marks>");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -156,7 +161,10 @@ public class ExamQMark extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblStudentAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblMarks)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -167,7 +175,9 @@ public class ExamQMark extends javax.swing.JFrame {
                 .addComponent(lblTopic)
                 .addGap(18, 18, 18)
                 .addComponent(lblQuestion)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblMarks)
+                .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblStudentAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -228,6 +238,7 @@ public class ExamQMark extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblAnswer;
     private javax.swing.JLabel lblAnswerTitle;
+    private javax.swing.JLabel lblMarks;
     private javax.swing.JLabel lblQuestion;
     private javax.swing.JLabel lblStudentAnswer;
     private javax.swing.JLabel lblTopic;
