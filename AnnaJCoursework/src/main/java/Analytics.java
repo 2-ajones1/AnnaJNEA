@@ -15,10 +15,12 @@ public class Analytics extends javax.swing.JFrame {
     static User user;
 
     /**
-     * Creates new form Analytics
+     * Creates new form analytics
      */
     public Analytics(User user) {
         initComponents();
+        this.user = user;
+        new DatabaseAccess().getAnalytics(user.getUserID());
     }
 
     /**

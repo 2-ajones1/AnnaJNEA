@@ -92,13 +92,13 @@ public class DatabaseAccess {
         }
         return "";
     }
-    
+
     public static Boolean getStudent(String email) {
         Boolean student = null;
         try ( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)) {
             String sqlStatement = "SELECT Student FROM Users WHERE UserEmail = '" + email + "';";
             String studentStr = "";
-            
+
             ResultSet rs = null;
             try ( Statement statement = con.createStatement()) {
                 statement.execute(sqlStatement);
@@ -107,9 +107,9 @@ public class DatabaseAccess {
                     studentStr = rs.getString(1);
                     System.out.println(studentStr);
                 }
-                if(studentStr.equals("1")){
+                if (studentStr.equals("1")) {
                     student = true;
-                }else{
+                } else {
                     student = false;
                 }
             }
@@ -218,6 +218,77 @@ public class DatabaseAccess {
             System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
         }
         return examQIDs;
+    }
+
+    public static ArrayList<String> getListOfTopicIDs() {
+        ArrayList<String> topicIDs = new ArrayList<>();
+        try ( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)) {
+            String sqlStatement = "SELECT TopicID FROM Topics;";
+            ResultSet rs = null;
+            try ( Statement statement = con.createStatement()) {
+                statement.execute(sqlStatement);
+                rs = statement.executeQuery(sqlStatement);
+                ResultSetMetaData rsmd = rs.getMetaData();
+                int columnCount = rsmd.getColumnCount();
+                while (rs.next()) {
+                    int i = 1;
+                    while (i <= columnCount) {
+                        topicIDs.add(rs.getString(i++));
+                    }
+                }
+            }
+            con.close();
+        } catch (Exception e) {
+            System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
+        }
+        return topicIDs;
+    }
+
+    public static void getAnalytics(String userID) {
+        ArrayList<String> topicIDs = new ArrayList<>();
+        topicIDs = new DatabaseAccess().getListOfTopicIDs();
+        ArrayList<String> topicExamQIDs = new ArrayList<>();
+        ArrayList<String> userExamQIDs = new ArrayList<>();
+        ArrayList<String> examQIDs = new ArrayList<>();
+        
+            try ( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)) {
+                ResultSet rs = null;
+                for(String topicID : topicIDs){
+                String sqlStatement = "SELECT ExamQID FROM ExamQuestions WHERE TopicID = '" + topicID + "'";
+                try ( Statement statement = con.createStatement()) {
+                    rs = statement.executeQuery(sqlStatement);
+                    ResultSetMetaData rsmd = rs.getMetaData();
+                    int columnCount = rsmd.getColumnCount();
+                    while (rs.next()) {
+                        int i = 1;
+                        while (i <= columnCount) {
+                            topicExamQIDs.add(rs.getString(i++));
+                        }
+                    }
+                }
+            }
+            rs = null;
+            String sqlStatement = "SELECT ExamQID FROM Analytics WHERE UserID = '" + userID + "'";
+            try ( Statement statement = con.createStatement()) {
+                rs = statement.executeQuery(sqlStatement);
+                ResultSetMetaData rsmd = rs.getMetaData();
+                int columnCount = rsmd.getColumnCount();
+                while (rs.next()) {
+                    int i = 1;
+                    while (i <= columnCount) {
+                        userExamQIDs.add(rs.getString(i++));
+                    }
+                }
+            }
+            con.close();
+        } catch (Exception e) {
+            System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
+        }
+        for(String topicEQID : topicExamQIDs){
+            if(userExamQIDs.contains(topicEQID)){
+                examQIDs.add(topicEQID);
+            }
+        }
     }
 
     public static ArrayList<String> getExamQuestion(int modifier) {
@@ -702,7 +773,7 @@ public class DatabaseAccess {
 
     //working
     public static String[] periodicity(String positiveName, String negativeName) {
-        String[] result = {"formula","pos","neg","pcharge","ncharge","pA", "nA"};
+        String[] result = {"formula", "pos", "neg", "pcharge", "ncharge", "pA", "nA"};
         try ( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)) {
             int positiveCharge = 0;
             int negativeCharge = 0;
@@ -720,7 +791,7 @@ public class DatabaseAccess {
                     if (rs.next()) {
                         positiveCharge = Integer.valueOf(rs.getString(1));
                     }
-                }  
+                }
             }
             String[] parts2 = negativeName.split(" ");
             if (parts2[0].equals("Group")) {
@@ -735,19 +806,19 @@ public class DatabaseAccess {
                     if (rs.next()) {
                         negativeCharge = Integer.valueOf(rs.getString(1));
                     }
-                }  
+                }
             }
             int lcm = new Calculator().findLCM(positiveCharge, negativeCharge);
-            String positiveAtoms = String.valueOf(lcm/positiveCharge);
-            String negativeAtoms = String.valueOf(lcm/negativeCharge);
-            if(positiveAtoms.equals("1")){
+            String positiveAtoms = String.valueOf(lcm / positiveCharge);
+            String negativeAtoms = String.valueOf(lcm / negativeCharge);
+            if (positiveAtoms.equals("1")) {
                 positiveAtoms = "";
-            }else if (positiveName.length() > 1){
+            } else if (positiveName.length() > 1) {
                 positiveName = "(" + positiveName + ")";
             }
-            if(negativeAtoms.equals("1")){
+            if (negativeAtoms.equals("1")) {
                 negativeAtoms = "";
-            }else if (negativeName.length() > 1){
+            } else if (negativeName.length() > 1) {
                 negativeName = "(" + negativeName + ")";
             }
             //String[] result = {"formula","pos","neg","pcharge","ncharge","pA", "nA"};
@@ -756,10 +827,10 @@ public class DatabaseAccess {
             result[2] = negativeName;
             result[3] = String.valueOf(positiveCharge);
             result[4] = String.valueOf(negativeCharge);
-            if(positiveAtoms.equals("")){
+            if (positiveAtoms.equals("")) {
                 positiveAtoms = "1";
             }
-            if(negativeAtoms.equals("")){
+            if (negativeAtoms.equals("")) {
                 negativeAtoms = "1";
             }
             result[5] = positiveAtoms;
