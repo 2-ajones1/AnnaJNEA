@@ -11,7 +11,18 @@
 public class User{
     
     private static String username;
-
+    private static String userEmail;
+    private static String userID;
+    private static DatabaseAccess userDB;
+    private static boolean student;
+    
+    public User(String userName, String userEmail){
+        this.username = userName;
+        this.userEmail = userEmail;
+        this.userID = userDB.getUserID(this.userEmail);
+        this.student = userDB.getStudent(this.userEmail);
+    }
+    
     public static void setUsername(String username) {
         User.username = username;
     }
@@ -19,14 +30,13 @@ public class User{
     public static void setUserEmail(String userEmail) {
         User.userEmail = userEmail;
     }
-    private static String userEmail;
-    private static String userID;
-    private static DatabaseAccess userDB;
-    
-    public User(String userName, String userEmail){
-        this.username = userName;
-        this.userEmail = userEmail;
-        this.userID = userDB.getUserID(this.userEmail);
+
+    public static boolean isStudent() {
+        return student;
+    }
+
+    public static void setStudent(boolean student) {
+        User.student = student;
     }
     
     public static String getUsername() {

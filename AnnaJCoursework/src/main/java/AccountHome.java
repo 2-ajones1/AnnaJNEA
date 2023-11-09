@@ -58,6 +58,11 @@ public class AccountHome extends javax.swing.JFrame {
 
         btnAnalytics.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnAnalytics.setText("Analytics");
+        btnAnalytics.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnalyticsActionPerformed(evt);
+            }
+        });
 
         btnChangePassword.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnChangePassword.setText("Change Password");
@@ -182,6 +187,12 @@ public class AccountHome extends javax.swing.JFrame {
         new HomePage(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnAnalyticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalyticsActionPerformed
+        // TODO add your handling code here:
+        new Analytics(user).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAnalyticsActionPerformed
 
     /**
      * @param args the command line arguments

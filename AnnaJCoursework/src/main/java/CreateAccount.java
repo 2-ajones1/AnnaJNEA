@@ -101,7 +101,7 @@ public class CreateAccount extends javax.swing.JFrame {
         });
 
         chbTeacherOrStudent.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        chbTeacherOrStudent.setText("Teacher Account");
+        chbTeacherOrStudent.setText("Student Account");
         chbTeacherOrStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chbTeacherOrStudentActionPerformed(evt);
@@ -175,7 +175,7 @@ public class CreateAccount extends javax.swing.JFrame {
         String email = tfEmail.getText();
         String username = tfUsername.getText();
         String password = String.valueOf(pswf1.getPassword());
-        Boolean student = true;
+        Boolean student = chbTeacherOrStudent.isSelected();
         DatabaseAccess create = new DatabaseAccess();
         create.createUser(email, username, password, student);
         new LoginPage().setVisible(true);

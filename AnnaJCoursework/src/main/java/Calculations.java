@@ -70,6 +70,11 @@ public class Calculations extends javax.swing.JFrame {
         });
 
         tfVal1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tfVal1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfVal1ActionPerformed(evt);
+            }
+        });
 
         lblVal2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lblVal2.setText("Value 2:");
@@ -244,6 +249,10 @@ public class Calculations extends javax.swing.JFrame {
             tfVal1.setEditable(true);
         }
     }//GEN-LAST:event_cbVal2ActionPerformed
+
+    private void tfVal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfVal1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfVal1ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -92,6 +92,33 @@ public class DatabaseAccess {
         }
         return "";
     }
+    
+    public static Boolean getStudent(String email) {
+        Boolean student = null;
+        try ( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)) {
+            String sqlStatement = "SELECT Student FROM Users WHERE UserEmail = '" + email + "';";
+            String studentStr = "";
+            
+            ResultSet rs = null;
+            try ( Statement statement = con.createStatement()) {
+                statement.execute(sqlStatement);
+                rs = statement.executeQuery(sqlStatement);
+                if (rs.next()) {
+                    studentStr = rs.getString(1);
+                    System.out.println(studentStr);
+                }
+                if(studentStr.equals("1")){
+                    student = true;
+                }else{
+                    student = false;
+                }
+            }
+            con.close();
+        } catch (Exception e) {
+            System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
+        }
+        return student;
+    }
 
     //working
     public static String getEmail(String username) {
@@ -509,7 +536,6 @@ public class DatabaseAccess {
 
             try ( Statement statement = con.createStatement()) {
                 statement.execute(sqlStatement);
-                rs = statement.executeQuery(sqlStatement);
                 rs = statement.executeQuery(sqlStatement);
                 ResultSetMetaData rsmd = rs.getMetaData();
                 int columnCount = rsmd.getColumnCount();

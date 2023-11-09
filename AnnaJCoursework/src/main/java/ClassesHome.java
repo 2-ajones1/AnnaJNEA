@@ -17,6 +17,15 @@ public class ClassesHome extends javax.swing.JFrame {
     public ClassesHome(User user) {
         initComponents();
         this.user = user;
+        boolean student = user.isStudent();
+        if(student == true){
+            btnCreateClass.setEnabled(false);
+            btnJoinClass.setEnabled(true);
+            btnCreateClass.setToolTipText("For teachers only");
+        }else{
+            btnCreateClass.setEnabled(true);
+            btnJoinClass.setEnabled(true);
+        }
     }
 
     /**
@@ -127,6 +136,10 @@ public class ClassesHome extends javax.swing.JFrame {
 
     private void btnCreateClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateClassActionPerformed
         // TODO add your handling code here:
+        boolean student = user.isStudent();
+        if(student){
+            btnJoinClass.setEnabled(false);
+        }
         new CreateNew(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCreateClassActionPerformed
