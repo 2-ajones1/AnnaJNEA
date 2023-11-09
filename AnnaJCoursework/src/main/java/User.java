@@ -16,8 +16,8 @@ public class User{
     private static DatabaseAccess userDB;
     private static boolean student;
     
-    public User(String userName, String userEmail){
-        this.username = userName;
+    public User(String username, String userEmail){
+        this.username = username;
         this.userEmail = userEmail;
         this.userID = userDB.getUserID(this.userEmail);
         this.student = userDB.getStudent(this.userEmail);
