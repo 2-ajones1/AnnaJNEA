@@ -139,11 +139,8 @@ public class SearchKeyword extends javax.swing.JFrame {
         // TODO add your handling code here:
         String keyword = tfKeywords.getText();
         ArrayList<String> pages = new DatabaseAccess().findPages(keyword);
-        String label = "";
-        for(String page : pages){
-            label = label + page + ", ";
-        }
-        lblTemp.setText(label);
+        new InfoPagesList(pages, user).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnSearchActionPerformed
 
     /**

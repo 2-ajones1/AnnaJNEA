@@ -38,7 +38,7 @@ public class ExamQMark extends javax.swing.JFrame {
         lblQuestion.setText(question);
         lblTopic.setText(topic);
         lblAnswer.setText(answer);
-        lblStudentAnswer.setText(studentAnswer);
+        taStudentAnswer.setText(studentAnswer);
     }
 
     /**
@@ -60,8 +60,9 @@ public class ExamQMark extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         tfMarksAwarded = new javax.swing.JTextField();
         btnNext = new javax.swing.JButton();
-        lblStudentAnswer = new javax.swing.JLabel();
         lblMarks = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        taStudentAnswer = new javax.swing.JTextArea();
 
         jLabel3.setText("jLabel3");
 
@@ -121,7 +122,7 @@ public class ExamQMark extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tfMarksAwarded, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnNext)
@@ -142,11 +143,14 @@ public class ExamQMark extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        lblStudentAnswer.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblStudentAnswer.setText("<Student Answer>");
-
         lblMarks.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblMarks.setText("<marks>");
+
+        taStudentAnswer.setEditable(false);
+        taStudentAnswer.setColumns(20);
+        taStudentAnswer.setLineWrap(true);
+        taStudentAnswer.setRows(5);
+        jScrollPane1.setViewportView(taStudentAnswer);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -159,7 +163,7 @@ public class ExamQMark extends javax.swing.JFrame {
                     .addComponent(lblQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblTopic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblStudentAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -179,8 +183,8 @@ public class ExamQMark extends javax.swing.JFrame {
                 .addComponent(lblMarks)
                 .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblStudentAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -236,12 +240,13 @@ public class ExamQMark extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAnswer;
     private javax.swing.JLabel lblAnswerTitle;
     private javax.swing.JLabel lblMarks;
     private javax.swing.JLabel lblQuestion;
-    private javax.swing.JLabel lblStudentAnswer;
     private javax.swing.JLabel lblTopic;
+    private javax.swing.JTextArea taStudentAnswer;
     private javax.swing.JTextField tfMarksAwarded;
     // End of variables declaration//GEN-END:variables
 }

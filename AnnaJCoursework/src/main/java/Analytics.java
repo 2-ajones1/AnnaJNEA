@@ -139,13 +139,13 @@ public class Analytics extends javax.swing.JFrame {
         jLabel16.setText("Colour by Design (CD)");
 
         lblELQAval.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblELQAval.setText("jLabel22");
+        lblELQAval.setText("0");
 
         lblELPA.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblELPA.setText("% Accuracy:");
 
         lblELPAval.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblELPAval.setText("jLabel24");
+        lblELPAval.setText("0");
 
         lblESQA.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblESQA.setText("Questions Attempted:");
@@ -163,13 +163,13 @@ public class Analytics extends javax.swing.JFrame {
         lblDFQA.setText("Questions Attempted:");
 
         lblDFQAval.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblDFQAval.setText("jLabel22");
+        lblDFQAval.setText("0");
 
         lblDFPA.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblDFPA.setText("% Accuracy:");
 
         lblDFPAval.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblDFPAval.setText("jLabel24");
+        lblDFPAval.setText("0");
 
         lblOZQA.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblOZQA.setText("Questions Attempted:");

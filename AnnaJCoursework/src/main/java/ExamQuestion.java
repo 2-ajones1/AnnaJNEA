@@ -71,6 +71,7 @@ public class ExamQuestion extends javax.swing.JFrame {
 
         taAnswer.setColumns(20);
         taAnswer.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        taAnswer.setLineWrap(true);
         taAnswer.setRows(5);
         jScrollPane2.setViewportView(taAnswer);
 

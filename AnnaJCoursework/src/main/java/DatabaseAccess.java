@@ -250,6 +250,7 @@ public class DatabaseAccess {
         ArrayList<String> topicExamQIDs = new ArrayList<>();
         ArrayList<String> userExamQIDs = new ArrayList<>();
         ArrayList<String> examQIDs = new ArrayList<>();
+        ArrayList<String> percentAccuracies = new ArrayList<>();
         
             try ( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)) {
                 ResultSet rs = null;
@@ -280,15 +281,31 @@ public class DatabaseAccess {
                     }
                 }
             }
+            for(String topicEQID : topicExamQIDs){
+            if(userExamQIDs.contains(topicEQID)){
+                examQIDs.add(topicEQID);
+            }
+            for(String examQID : examQIDs){
+                rs = null;
+            sqlStatement = "SELECT PercentAccuracy FROM Analytics WHERE ExamQID = '" + examQID + "'";
+            try ( Statement statement = con.createStatement()) {
+                rs = statement.executeQuery(sqlStatement);
+                ResultSetMetaData rsmd = rs.getMetaData();
+                int columnCount = rsmd.getColumnCount();
+                while (rs.next()) {
+                    int i = 1;
+                    while (i <= columnCount) {
+                        percentAccuracies.add(rs.getString(i++));
+                    }
+                }
+            }
+            }
+        }
             con.close();
         } catch (Exception e) {
             System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
         }
-        for(String topicEQID : topicExamQIDs){
-            if(userExamQIDs.contains(topicEQID)){
-                examQIDs.add(topicEQID);
-            }
-        }
+        
     }
 
     public static ArrayList<String> getExamQuestion(int modifier) {
@@ -622,6 +639,31 @@ public class DatabaseAccess {
             System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
         }
         return pageTitles;
+    }
+    
+    public static ArrayList<String> getPageInfo(String title) {
+        ArrayList<String> pageInfo = new ArrayList<>();
+        try ( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)) {
+            String sqlStatement = "SELECT PageTitle, PageContent FROM InformationPages WHERE PageTitle = '" + title + "'";
+            ResultSet rs = null;
+
+            try ( Statement statement = con.createStatement()) {
+                statement.execute(sqlStatement);
+                rs = statement.executeQuery(sqlStatement);
+                ResultSetMetaData rsmd = rs.getMetaData();
+                int columnCount = rsmd.getColumnCount();
+                while (rs.next()) {
+                    int i = 1;
+                    while (i <= columnCount) {
+                        pageInfo.add(rs.getString(i++));
+                    }
+                }
+            }
+            con.close();
+        } catch (Exception e) {
+            System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
+        }
+        return pageInfo;
     }
 
     //working
