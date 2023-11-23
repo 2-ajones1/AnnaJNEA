@@ -38,12 +38,13 @@ public class Periodicity extends javax.swing.JFrame {
         lblFormulae = new javax.swing.JLabel();
         lblTrend = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
-        lblExplanation = new javax.swing.JLabel();
         lblTrendText = new javax.swing.JLabel();
         btnCalculate = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblFormula = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        taExplanation = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,9 +103,6 @@ public class Periodicity extends javax.swing.JFrame {
             }
         });
 
-        lblExplanation.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblExplanation.setText("<explanation>");
-
         lblTrendText.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblTrendText.setText("<trend>");
 
@@ -125,6 +123,14 @@ public class Periodicity extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         jLabel3.setText("(X denotes a positive metal ion from the group chosen, and Y denotes a negative ion from the group chosen)");
 
+        taExplanation.setEditable(false);
+        taExplanation.setColumns(20);
+        taExplanation.setLineWrap(true);
+        taExplanation.setRows(5);
+        taExplanation.setWrapStyleWord(true);
+        taExplanation.setAutoscrolls(false);
+        jScrollPane1.setViewportView(taExplanation);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -135,15 +141,9 @@ public class Periodicity extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTrendText)
-                            .addComponent(lblExplanation))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblFormulae)
-                                    .addComponent(lblTrend)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(lblGroup, javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,15 +157,21 @@ public class Periodicity extends javax.swing.JFrame {
                                 .addGap(197, 197, 197)
                                 .addComponent(btnCalculate))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnBack)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
                                 .addComponent(lblFormula)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3)))
-                        .addContainerGap())))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                                .addComponent(jLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnBack)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTrendText)
+                            .addComponent(lblTrend))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,15 +196,15 @@ public class Periodicity extends javax.swing.JFrame {
                     .addComponent(lblFormula))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(lblFormulae)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblExplanation)
-                .addGap(42, 42, 42)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTrend)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTrendText)
-                .addGap(45, 45, 45)
+                .addGap(18, 18, 18)
                 .addComponent(btnBack)
                 .addContainerGap())
         );
@@ -237,7 +243,7 @@ public class Periodicity extends javax.swing.JFrame {
         String[] result = new DatabaseAccess().periodicity(positiveName, negativeName);
         //String[] result = {"formula","pos","neg","pcharge","ncharge","pA", "nA"};
         lblFormula.setText(result[0]);
-        lblExplanation.setText("As "+ result[1] + " has a charge of "+ result[3] + " and "+ result[2] + " has a charge of "+ result[4] + " , there must be "+ result[5] + " of "+ result[1] + " and "+ result[6] + " of "+ result[2] + " to make the charges neutral.");
+        taExplanation.setText("As "+ result[1] + " has a charge of "+ result[3] + " and "+ result[2] + " has a charge of "+ result[4] + " , there must be "+ result[5] + " of "+ result[1] + " and "+ result[6] + " of "+ result[2] + " to make the charges neutral.");
     }//GEN-LAST:event_btnCalculateActionPerformed
 
     /**
@@ -284,7 +290,7 @@ public class Periodicity extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblExplanation;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblFormula;
     private javax.swing.JLabel lblFormulae;
     private javax.swing.JLabel lblGroup;
@@ -292,5 +298,6 @@ public class Periodicity extends javax.swing.JFrame {
     private javax.swing.JLabel lblProperty;
     private javax.swing.JLabel lblTrend;
     private javax.swing.JLabel lblTrendText;
+    private javax.swing.JTextArea taExplanation;
     // End of variables declaration//GEN-END:variables
 }
