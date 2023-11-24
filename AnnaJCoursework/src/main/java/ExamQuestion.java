@@ -22,7 +22,7 @@ public class ExamQuestion extends javax.swing.JFrame {
     public ExamQuestion(User user) {
         initComponents();
         this.user = user;
-        ArrayList<String> examQ = new DatabaseAccess().getExamQuestion(1);
+        ArrayList<String> examQ = new DatabaseAccess().getExamQuestion(1, user);
         this.examQ = examQ;
         String question = examQ.get(0);
         String marks = examQ.get(1);

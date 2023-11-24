@@ -67,6 +67,7 @@ public class InfoPage extends javax.swing.JFrame {
         taInformation.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         taInformation.setLineWrap(true);
         taInformation.setRows(5);
+        taInformation.setWrapStyleWord(true);
         jScrollPane1.setViewportView(taInformation);
 
         btnBack.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N

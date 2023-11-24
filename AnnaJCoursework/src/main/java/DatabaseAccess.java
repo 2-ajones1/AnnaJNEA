@@ -190,25 +190,49 @@ public class DatabaseAccess {
             if (userExamQIDs.contains(topicEQID)) {
                 examQIDs.add(topicEQID);
             }
-            
+
             for (String examQID : examQIDs) {
                 percentAccuracies = new DatabaseAccess().selectFromDatabaseArrayList("SELECT PercentAccuracy FROM Analytics WHERE ExamQID = '" + examQID + "'");
             }
         }
     }
 
-    public static ArrayList<String> getExamQuestion(int modifier) {
+    public static ArrayList<String> getExamQuestion(int modifier, User user) {
         ArrayList<String> examQuestion = new ArrayList<>();
         if (modifier == 1) {
             ArrayList<String> examIDs = new ArrayList<>();
             ArrayList<String> topicIDs = new ArrayList<>();
+            ArrayList<String> userExamQIDs = new ArrayList<>();
+
+            //get a list of all exam questions in the database
             examIDs = new DatabaseAccess().getListOfExamQIDs();
+            
+            //determine which ones user has already answered
+            userExamQIDs = new DatabaseAccess().selectFromDatabaseArrayList("SELECT ExamQID FROM Analytics WHERE UserID = '" + user.getUserID() + "'");
+            for(String userEQID : userExamQIDs){
+                if (examIDs.contains(userEQID)){
+                    examIDs.remove(userEQID);
+                }
+            }
+            if(examIDs.isEmpty()){
+                examIDs = new DatabaseAccess().getListOfExamQIDs();
+            }
+
             Random rand = new Random();
+
+            //get random exam question from the list
             String examQID = examIDs.get(rand.nextInt(examIDs.size()));
+
             topicIDs = new DatabaseAccess().selectFromDatabaseArrayList("SELECT TopicID FROM ExamQuestions WHERE ExamQID = '" + examQID + "';");
             String topicID = topicIDs.get(0);
             examQuestion = new DatabaseAccess().selectFromDatabaseArrayList("SELECT Question, MarksAvailable, TopicName, Answer, ExamQID FROM ExamQuestions, Topics WHERE ExamQuestions.ExamQID = '" + examQID + "' AND Topics.TopicID = '" + topicID + "';");
+        }else if(modifier == 2){
+            //by lowest accuracy
+            examQuestion = new DatabaseAccess().selectFromDatabaseArrayList("SELECT ExamQID FROM Analytics WHERE UserID = '"+user.getUserID()+"' ORDER BY(PercentAccuracy);");
+        }else if(modifier == 3){
+            //by topic
         }
+        
         return examQuestion;
     }
 
@@ -392,7 +416,7 @@ public class DatabaseAccess {
     public static int[] calculate(String valueName1, String valueName2) {
         int[] positions = {0, 0};
         String valueID1 = new DatabaseAccess().selectFromDatabaseString("SELECT TypeID FROM ValueTypes WHERE ValueName = '" + valueName1 + "';");
-        String valueID2 = new DatabaseAccess().selectFromDatabaseString("\"SELECT TypeID FROM ValueTypes WHERE ValueName = '\" + valueName2 + \"';\"");
+        String valueID2 = new DatabaseAccess().selectFromDatabaseString("SELECT TypeID FROM ValueTypes WHERE ValueName = '" + valueName2 + "';");
         String equationID = new DatabaseAccess().selectFromDatabaseString("SELECT EquationID FROM Equations WHERE \n"
                 + "TypeID1 = '" + valueID1 + "' AND TypeID2 = '" + valueID2 + "' OR\n"
                 + "TypeID2 = '" + valueID1 + "' AND TypeID1 = '" + valueID2 + "' OR\n"
