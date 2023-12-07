@@ -1,3 +1,6 @@
+
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -38,6 +41,7 @@ public class ChangeUser extends javax.swing.JFrame {
         pswfPassword = new javax.swing.JPasswordField();
         btnChangeUser = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        lblError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,6 +101,9 @@ public class ChangeUser extends javax.swing.JFrame {
             }
         });
 
+        lblError.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,7 +135,8 @@ public class ChangeUser extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(btnBack)))
-                        .addGap(0, 215, Short.MAX_VALUE)))
+                        .addGap(0, 215, Short.MAX_VALUE))
+                    .addComponent(lblError, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -149,9 +157,11 @@ public class ChangeUser extends javax.swing.JFrame {
                 .addComponent(lblPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pswfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
+                .addGap(18, 18, 18)
+                .addComponent(lblError)
+                .addGap(27, 27, 27)
                 .addComponent(btnChangeUser)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addComponent(btnBack)
                 .addContainerGap())
         );
@@ -174,7 +184,14 @@ public class ChangeUser extends javax.swing.JFrame {
         String password = String.valueOf(pswfPassword.getPassword());
         String username = tfCurrentUser.getText();
         String newUsername = tfNewUser.getText();
-        new DatabaseAccess().changeUsername(username, newUsername, password);
+        DatabaseAccess db = new DatabaseAccess();
+        if (db.verifyUserName(user, password, username)) {
+            lblError.setText("");
+            new DatabaseAccess().changeUsername(username, newUsername, password);
+            lblError.setText("Username changed successfully to " + newUsername);
+        }else{
+            lblError.setText("Incorrect username or password");
+        }
     }//GEN-LAST:event_btnChangeUserActionPerformed
 
     /**
@@ -218,6 +235,7 @@ public class ChangeUser extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblChangeUser;
     private javax.swing.JLabel lblCurrentUser;
+    private javax.swing.JLabel lblError;
     private javax.swing.JLabel lblNewUser;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JPasswordField pswfPassword;

@@ -38,6 +38,7 @@ public class ChangePassword extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         tfEmail = new javax.swing.JTextField();
         lblEmail = new javax.swing.JLabel();
+        lblError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,6 +93,9 @@ public class ChangePassword extends javax.swing.JFrame {
         lblEmail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblEmail.setText("Email");
 
+        lblError.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,7 +106,7 @@ public class ChangePassword extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblChangePassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblChangePassword, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
                             .addComponent(lblPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblNew, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(pswf1)
@@ -110,15 +114,16 @@ public class ChangePassword extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnBack)
                                 .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(266, 266, 266)
-                        .addComponent(btnVerify)
-                        .addGap(0, 255, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tfEmail))))
+                            .addComponent(tfEmail)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(265, 265, 265)
+                        .addComponent(btnVerify)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(lblError, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -140,8 +145,10 @@ public class ChangePassword extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pswfNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(lblError)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(btnVerify)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
                 .addComponent(btnBack)
                 .addContainerGap())
         );
@@ -160,7 +167,13 @@ public class ChangePassword extends javax.swing.JFrame {
         String password = String.valueOf(pswf1.getPassword());
         String email = tfEmail.getText();
         String newPassword = String.valueOf(pswfNew.getPassword());
-        new DatabaseAccess().changePassword(email, password, newPassword);
+        DatabaseAccess db = new DatabaseAccess();
+        if (db.verifyUserEmail(user, password, email)) {
+            lblError.setText("");
+            db.changePassword(email, password, newPassword);
+        }else{
+            lblError.setText("Incorrect email or password");
+        }
     }//GEN-LAST:event_btnVerifyActionPerformed
 
     /**
@@ -204,6 +217,7 @@ public class ChangePassword extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblChangePassword;
     private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblError;
     private javax.swing.JLabel lblNew;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JPasswordField pswf1;

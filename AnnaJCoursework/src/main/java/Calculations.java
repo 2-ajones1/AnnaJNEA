@@ -200,6 +200,8 @@ public class Calculations extends javax.swing.JFrame {
 
     private void btnCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateActionPerformed
         // TODO add your handling code here:
+        lblResultResult.setText("");
+        lblUnits.setText("");
         String value1 = String.valueOf(cbVal1.getSelectedItem());
         String value2 = String.valueOf(cbVal2.getSelectedItem());
         double number1 = Double.valueOf(tfVal1.getText());

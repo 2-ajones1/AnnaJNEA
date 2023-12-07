@@ -38,6 +38,7 @@ public class ChangeEmail extends javax.swing.JFrame {
         lblPassword = new javax.swing.JLabel();
         pswf1 = new javax.swing.JPasswordField();
         btnBack = new javax.swing.JButton();
+        lblError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,6 +96,9 @@ public class ChangeEmail extends javax.swing.JFrame {
             }
         });
 
+        lblError.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,6 +106,15 @@ public class ChangeEmail extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(239, 239, 239)
+                                .addComponent(btnChangeEmail))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btnBack)))
+                        .addGap(0, 232, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,16 +124,8 @@ public class ChangeEmail extends javax.swing.JFrame {
                             .addComponent(lblCurrentEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(tfCurrentEmail)
                             .addComponent(lblPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pswf1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(239, 239, 239)
-                                .addComponent(btnChangeEmail))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(btnBack)))
-                        .addGap(0, 232, Short.MAX_VALUE)))
+                            .addComponent(pswf1)
+                            .addComponent(lblError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -141,9 +146,11 @@ public class ChangeEmail extends javax.swing.JFrame {
                 .addComponent(lblPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pswf1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
+                .addGap(18, 18, 18)
+                .addComponent(lblError)
+                .addGap(21, 21, 21)
                 .addComponent(btnChangeEmail)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addComponent(btnBack)
                 .addContainerGap())
         );
@@ -166,7 +173,14 @@ public class ChangeEmail extends javax.swing.JFrame {
         String password = String.valueOf(pswf1.getPassword());
         String email = tfCurrentEmail.getText();
         String newEmail = tfNewEmail.getText();
-        new DatabaseAccess().changeEmail(email, newEmail, password);
+        DatabaseAccess db = new DatabaseAccess();
+        if(db.verifyUserEmail(user, password, email)){
+            lblError.setText("");
+            db.changeEmail(email, newEmail, password);
+            lblError.setText("Email successfully changed to " + newEmail);
+        }else{
+            lblError.setText("Incorrect email or password");
+        }
     }//GEN-LAST:event_btnChangeEmailActionPerformed
 
     /**
@@ -210,6 +224,7 @@ public class ChangeEmail extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblChangeEmail;
     private javax.swing.JLabel lblCurrentEmail;
+    private javax.swing.JLabel lblError;
     private javax.swing.JLabel lblNewEmail;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JPasswordField pswf1;

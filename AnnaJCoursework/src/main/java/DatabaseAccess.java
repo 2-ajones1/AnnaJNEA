@@ -23,7 +23,6 @@ public class DatabaseAccess {
     protected static final String USERNAME = "2022c_AJones";
     protected static final String PASSWORD = "gS8Hd5ASpw6K2ufw";
 
-    //working
     public static boolean sqlTestDBConnection() {
         boolean connection;
         try ( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)) {
@@ -37,7 +36,6 @@ public class DatabaseAccess {
         return connection;
     }
 
-    //working
     public static void sqlExecution() {
         try ( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)) {
             System.out.println("CONNECTION MADE!");
@@ -49,6 +47,36 @@ public class DatabaseAccess {
         } catch (Exception e) {
             System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
         }
+    }
+
+    public static boolean existsInDatabase(String testString, String tableName, String columnName) {
+        ArrayList<String> entries = new ArrayList<>();
+        boolean exists = false;
+        entries = new DatabaseAccess().selectFromDatabaseArrayList("SELECT '" + columnName + "' FROM '" + tableName + "';");
+        if (entries.contains(testString)) {
+            exists = true;
+        } else {
+            exists = false;
+        }
+        return exists;
+    }
+
+    public static boolean validatePresence(String testString) {
+        boolean present = false;
+        if (testString.isEmpty()) {
+            present = false;
+        } else {
+            present = true;
+        }
+        return present;
+    }
+
+    public static boolean validateLength(String testString, int maxLength) {
+        boolean validLength = false;
+        if (testString.length() <= maxLength) {
+            validLength = true;
+        }
+        return validLength;
     }
 
     public static ArrayList<String> selectFromDatabaseArrayList(String sqlStatement) {
@@ -110,7 +138,18 @@ public class DatabaseAccess {
         return Integer.valueOf(string);
     }
 
-    //working
+    public static void insertIntoDatabase(String sqlStatement) {
+        try ( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)) {
+            try ( Statement statement = con.createStatement()) {
+                statement.execute(sqlStatement);
+                System.out.println("Success");
+            }
+            con.close();
+        } catch (Exception e) {
+            System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
+        }
+    }
+
     public static boolean verifyUser(String email, String username, String password) {
         boolean verified = false;
         String DBpassword = new DatabaseAccess().selectFromDatabaseString("SELECT UserPassword FROM Users WHERE UserEmail = '" + email + "' AND Username = '" + username + "';");
@@ -120,14 +159,37 @@ public class DatabaseAccess {
         return verified;
     }
 
-    //working
+    public static boolean verifyUserEmail(User user, String password, String email) {
+        boolean verified = false;
+        String DBpassword = "";
+        if (email.equals(user.getEmail())) {
+            DBpassword = new DatabaseAccess().selectFromDatabaseString("SELECT UserPassword FROM Users WHERE UserEmail = '" + email + "';");
+        }
+        if (DBpassword.equals(password)) {
+            verified = true;
+        }
+        return verified;
+    }
+
+    public static boolean verifyUserName(User user, String password, String username) {
+        boolean verified = false;
+        String DBpassword = "";
+        if (username.equals(user.getUsername())) {
+            DBpassword = new DatabaseAccess().selectFromDatabaseString("SELECT UserPassword FROM Users WHERE Username = '" + username + "';");
+        }
+        if (DBpassword.equals(password)) {
+            verified = true;
+        }
+        return verified;
+    }
+
     public static String getUserID(String email) {
         String userID = new DatabaseAccess().selectFromDatabaseString("SELECT UserID FROM Users WHERE UserEmail = '" + email + "';");
         return userID;
     }
 
-    public static Boolean getStudent(String email) {
-        Boolean student = null;
+    public static boolean getStudent(String email) {
+        boolean student = false;
         String studentStr = new DatabaseAccess().selectFromDatabaseString("SELECT Student FROM Users WHERE UserEmail = '" + email + "';");
         if (studentStr.equals("1")) {
             student = true;
@@ -138,25 +200,21 @@ public class DatabaseAccess {
         return student;
     }
 
-    //working
     public static String getEmail(String username) {
         String email = new DatabaseAccess().selectFromDatabaseString("SELECT UserEmail FROM Users WHERE Username = '" + username + "';");
         return email;
     }
 
-    //working
     public static String getUsername(String userID) {
         String username = new DatabaseAccess().selectFromDatabaseString("SELECT Username FROM Users WHERE UserID = '" + userID + "';");
         return username;
     }
 
-    //working
     public static String getTopicName(String topicID) {
         String topicName = new DatabaseAccess().selectFromDatabaseString("SELECT TopicName FROM Topics WHERE TopicID = '" + topicID + "';");
         return topicName;
     }
 
-    //working
     public static String getClassName(String classCode) {
         String className = new DatabaseAccess().selectFromDatabaseString("SELECT ClassName FROM Classes WHERE ClassCode = '" + classCode + "';");
         return className;
@@ -206,15 +264,15 @@ public class DatabaseAccess {
 
             //get a list of all exam questions in the database
             examIDs = new DatabaseAccess().getListOfExamQIDs();
-            
+
             //determine which ones user has already answered
             userExamQIDs = new DatabaseAccess().selectFromDatabaseArrayList("SELECT ExamQID FROM Analytics WHERE UserID = '" + user.getUserID() + "'");
-            for(String userEQID : userExamQIDs){
-                if (examIDs.contains(userEQID)){
+            for (String userEQID : userExamQIDs) {
+                if (examIDs.contains(userEQID)) {
                     examIDs.remove(userEQID);
                 }
             }
-            if(examIDs.isEmpty()){
+            if (examIDs.isEmpty()) {
                 examIDs = new DatabaseAccess().getListOfExamQIDs();
             }
 
@@ -226,13 +284,13 @@ public class DatabaseAccess {
             topicIDs = new DatabaseAccess().selectFromDatabaseArrayList("SELECT TopicID FROM ExamQuestions WHERE ExamQID = '" + examQID + "';");
             String topicID = topicIDs.get(0);
             examQuestion = new DatabaseAccess().selectFromDatabaseArrayList("SELECT Question, MarksAvailable, TopicName, Answer, ExamQID FROM ExamQuestions, Topics WHERE ExamQuestions.ExamQID = '" + examQID + "' AND Topics.TopicID = '" + topicID + "';");
-        }else if(modifier == 2){
+        } else if (modifier == 2) {
             //by lowest accuracy
-            examQuestion = new DatabaseAccess().selectFromDatabaseArrayList("SELECT ExamQID FROM Analytics WHERE UserID = '"+user.getUserID()+"' ORDER BY(PercentAccuracy);");
-        }else if(modifier == 3){
+            examQuestion = new DatabaseAccess().selectFromDatabaseArrayList("SELECT ExamQID FROM Analytics WHERE UserID = '" + user.getUserID() + "' ORDER BY(PercentAccuracy);");
+        } else if (modifier == 3) {
             //by topic
         }
-        
+
         return examQuestion;
     }
 
@@ -249,27 +307,34 @@ public class DatabaseAccess {
         }
     }
 
-    //working
-    public static void createUser(String email, String username, String password, boolean student) {
+    public static String createUser(String email, String username, String password, boolean student) {
         Random rand = new Random();
+        String message = "";
         String userID = "US";
         for (int x = 0; x < 4; x++) {
             userID = userID + String.valueOf(rand.nextInt(10));
         }
-        try ( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)) {
-            String sqlStatement = ("INSERT INTO Users VALUES ('" + userID + "', '" + username + "', '" + password + "', '" + email + "', " + student + ")");
-            System.out.println(sqlStatement);
-            try ( Statement statement = con.createStatement()) {
-                statement.execute(sqlStatement);
-                System.out.println("Success");
+        if (new DatabaseAccess().existsInDatabase(userID, "Users", "UserID")) {
+            while (new DatabaseAccess().existsInDatabase(userID, "Users", "UserID")) {
+                userID = "US";
+                for (int x = 0; x < 4; x++) {
+                    userID = userID + String.valueOf(rand.nextInt(10));
+                }
             }
-            con.close();
-        } catch (Exception e) {
-            System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
         }
+        if (!(new DatabaseAccess().existsInDatabase(username, "Users", "Username"))) {
+            if (!(new DatabaseAccess().existsInDatabase(email, "Users", "UserEmail"))) {
+                new DatabaseAccess().insertIntoDatabase("INSERT INTO Users VALUES ('" + userID + "', '" + username + "', '" + password + "', '" + email + "', " + student + ")");
+            } else {
+                message = "An account with this email already exists";
+            }
+        } else {
+            message = "Username has been taken";
+        }
+
+        return message;
     }
 
-    //working
     public static void createClass(String name, User user) {
         Random rand = new Random();
         String classID = "CL";
@@ -314,7 +379,6 @@ public class DatabaseAccess {
         }
     }
 
-    //working
     public static User logIn(String username, String password) {
         User user = new User("", "");
         ArrayList<String> userInfo = new ArrayList<>();
@@ -324,13 +388,16 @@ public class DatabaseAccess {
             userInfo = new DatabaseAccess().selectFromDatabaseArrayList("SELECT UserEmail FROM Users WHERE Username = '" + username + "';");
             String email = userInfo.get(0);
             user = new User(username, email);
-            HomePage home = new HomePage(user);
-            home.setVisible(true);
+            if (new DatabaseAccess().verifyUser(email, username, password)) {
+                user = new User(username, email);
+
+            } else {
+                user = new User("", "");
+            }
         }
         return user;
     }
 
-    //working
     public static void deleteUser(String email, String username, String password) {
         try ( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)) {
             ResultSet rs = null;
@@ -347,7 +414,6 @@ public class DatabaseAccess {
         }
     }
 
-    //working
     public static void changeEmail(String email, String newEmail, String password) {
         try ( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)) {
             String DBpassword = new DatabaseAccess().selectFromDatabaseString("SELECT UserPassword FROM Users WHERE UserEmail = '" + email + "';");
@@ -364,7 +430,6 @@ public class DatabaseAccess {
         }
     }
 
-    //working
     public static void changePassword(String email, String password, String newPassword) {
         try ( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)) {
 
@@ -383,7 +448,6 @@ public class DatabaseAccess {
         }
     }
 
-    //working
     public static void changeUsername(String username, String newUsername, String password) {
         try ( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)) {
             String DBpassword = new DatabaseAccess().selectFromDatabaseString("SELECT UserPassword FROM Users WHERE Username = '" + username + "';");
@@ -400,7 +464,6 @@ public class DatabaseAccess {
         }
     }
 
-    //working on the database side
     public static ArrayList<String> findPages(String keyword) {
         ArrayList<String> pageTitles = new DatabaseAccess().selectFromDatabaseArrayList("SELECT PageTitle FROM InformationPages WHERE PageContent LIKE '%" + keyword + "%'");
         return pageTitles;
@@ -412,7 +475,6 @@ public class DatabaseAccess {
         return pageInfo;
     }
 
-    //working
     public static int[] calculate(String valueName1, String valueName2) {
         int[] positions = {0, 0};
         String valueID1 = new DatabaseAccess().selectFromDatabaseString("SELECT TypeID FROM ValueTypes WHERE ValueName = '" + valueName1 + "';");
@@ -424,14 +486,13 @@ public class DatabaseAccess {
                 + "TypeID3 = '" + valueID1 + "' AND TypeID1 = '" + valueID2 + "' OR\n"
                 + "TypeID2 = '" + valueID1 + "' AND TypeID3 = '" + valueID2 + "' OR\n"
                 + "TypeID3 = '" + valueID1 + "' AND TypeID2 = '" + valueID2 + "';");
-        int valuePosition1 = Integer.valueOf(new DatabaseAccess().selectFromDatabaseString("SELECT Position FROM ValuePositions WHERE TypeID = '" + valueID1 + "' AND EquationID = '" + equationID + "'"));
-        int valuePosition2 = Integer.valueOf(new DatabaseAccess().selectFromDatabaseString("SELECT Position FROM ValuePositions WHERE TypeID = '" + valueID2 + "' AND EquationID = '" + equationID + "'"));;
+        int valuePosition1 = Integer.valueOf(new DatabaseAccess().selectFromDatabaseString("SELECT Position FROM ValuePositions WHERE TypeID = '" + valueID1 + "' AND EquationID = '" + equationID + "';"));
+        int valuePosition2 = Integer.valueOf(new DatabaseAccess().selectFromDatabaseString("SELECT Position FROM ValuePositions WHERE TypeID = '" + valueID2 + "' AND EquationID = '" + equationID + "';"));
         positions[0] = valuePosition1;
         positions[1] = valuePosition2;
         return positions;
     }
 
-    //working
     public static String getUnits(int[] positions, String valueName1, String valueName2) {
         String units = "";
         String valueID1 = new DatabaseAccess().selectFromDatabaseString("SELECT TypeID FROM ValueTypes WHERE ValueName = '" + valueName1 + "';");
@@ -456,7 +517,6 @@ public class DatabaseAccess {
         return units;
     }
 
-    //working
     public static String[] periodicity(String positiveName, String negativeName) {
         String[] result = {"formula", "pos", "neg", "pcharge", "ncharge", "pA", "nA"};
         int positiveCharge = 0;
