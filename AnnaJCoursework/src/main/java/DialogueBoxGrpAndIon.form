@@ -31,9 +31,8 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="btnOk" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="lblInert" alignment="0" max="32767" attributes="0"/>
-                  <Component id="lblCircumstances" alignment="0" max="32767" attributes="0"/>
-                  <Component id="lblGrp8" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lblGrp8" alignment="0" pref="417" max="32767" attributes="0"/>
+                  <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -45,11 +44,9 @@
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="lblGrp8" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
-              <Component id="lblInert" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="lblCircumstances" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="74" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="34" max="-2" attributes="0"/>
+              <EmptySpace pref="77" max="32767" attributes="0"/>
               <Component id="btnOk" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -83,7 +80,7 @@
           <Font name="Arial" size="14" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Group 8 + Ions"/>
+        <Property name="text" type="java.lang.String" value="Group 8"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnOk">
@@ -97,22 +94,13 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOkActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblInert">
+    <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="12" style="0"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Group 8 elements are inert, meaning they won&apos;t react with ions under normal"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblCircumstances">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial" size="12" style="0"/>
-        </Property>
-        <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="circumstances!"/>
+        <Property name="text" type="java.lang.String" value="Group 8 gases do not form ions, so they won&apos;t react with anything!"/>
       </Properties>
     </Component>
   </SubComponents>

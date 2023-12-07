@@ -29,8 +29,7 @@ public class DialogueBoxGrpAndIon extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lblGrp8 = new javax.swing.JLabel();
         btnOk = new javax.swing.JButton();
-        lblInert = new javax.swing.JLabel();
-        lblCircumstances = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,7 +48,7 @@ public class DialogueBoxGrpAndIon extends javax.swing.JFrame {
 
         lblGrp8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblGrp8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblGrp8.setText("Group 8 + Ions");
+        lblGrp8.setText("Group 8");
 
         btnOk.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnOk.setText("Ok");
@@ -59,13 +58,9 @@ public class DialogueBoxGrpAndIon extends javax.swing.JFrame {
             }
         });
 
-        lblInert.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblInert.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblInert.setText("Group 8 elements are inert, meaning they won't react with ions under normal");
-
-        lblCircumstances.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblCircumstances.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCircumstances.setText("circumstances!");
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Group 8 gases do not form ions, so they won't react with anything!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,9 +73,8 @@ public class DialogueBoxGrpAndIon extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnOk))
-                    .addComponent(lblInert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblCircumstances, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblGrp8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblGrp8, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -89,11 +83,9 @@ public class DialogueBoxGrpAndIon extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblGrp8)
-                .addGap(68, 68, 68)
-                .addComponent(lblInert)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblCircumstances)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addGap(70, 70, 70)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addComponent(btnOk)
                 .addContainerGap())
         );
@@ -143,9 +135,8 @@ public class DialogueBoxGrpAndIon extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOk;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblCircumstances;
     private javax.swing.JLabel lblGrp8;
-    private javax.swing.JLabel lblInert;
     // End of variables declaration//GEN-END:variables
 }

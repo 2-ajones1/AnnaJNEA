@@ -65,7 +65,7 @@ public class Periodicity extends javax.swing.JFrame {
         lblGroup.setText("Positive Ion or Group:");
 
         cbPos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbPos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Group 1 Metals", "Group 2 Metals", "Group 3 Metals", "H +", "NH4 +", "Pb 2+", "Cu 2+", "Zn 2+" }));
+        cbPos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-None selected-", "Group 1 Metals", "Group 2 Metals", "Group 3 Metals", "Group 8 Gases", "H +", "NH4 +", "Pb 2+", "Cu 2+", "Zn 2+" }));
         cbPos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbPosActionPerformed(evt);
@@ -220,18 +220,18 @@ public class Periodicity extends javax.swing.JFrame {
 
     private void cbNegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbNegActionPerformed
         // TODO add your handling code here:
-        String selectedIon = String.valueOf(cbNeg.getSelectedItem());
-        if (!(selectedIon.equals("No Ion Selected"))&& String.valueOf(cbPos.getSelectedItem()).equals("Group 8")){
-            cbNeg.setSelectedItem("No Ion Selected");
+        String selectedPos = String.valueOf(cbPos.getSelectedItem());
+        if (!(selectedPos.equals("-None selected-"))&& String.valueOf(cbPos.getSelectedItem()).equals("Group 8 Gases")){
+            cbNeg.setSelectedItem("-None selected-");
             new DialogueBoxGrpAndIon().setVisible(true);
         }
     }//GEN-LAST:event_cbNegActionPerformed
 
     private void cbPosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPosActionPerformed
         // TODO add your handling code here:
-        String selectedIon = String.valueOf(cbNeg.getSelectedItem());
-        if (!(selectedIon.equals("No Ion Selected"))&& String.valueOf(cbPos.getSelectedItem()).equals("Group 8")){
-            cbNeg.setSelectedItem("No Ion Selected");
+        String selectedNeg = String.valueOf(cbNeg.getSelectedItem());
+        if (!(selectedNeg.equals("-None selected-"))&& String.valueOf(cbPos.getSelectedItem()).equals("Group 8 Gases")){
+            cbNeg.setSelectedItem("-None selected-");
             new DialogueBoxGrpAndIon().setVisible(true);
         }
     }//GEN-LAST:event_cbPosActionPerformed
