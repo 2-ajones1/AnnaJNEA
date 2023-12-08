@@ -380,6 +380,22 @@ public class DatabaseAccess {
         }
     }
     
+    public static String[] myClasses(User user){
+        ArrayList<String> classes = new ArrayList<>();
+        ArrayList<String> classNames = new ArrayList<>();
+        classes = selectFromDatabaseArrayList("SELECT ClassID FROM ClassMembers WHERE UserID = '"+ user.getUserID()+"';");
+        for(String classID : classes){
+            classNames.add(selectFromDatabaseString("SELECT ClassName FROM Classes WHERE ClassID = '"+classID+"';"));
+        }
+        String[] classNamesArray = new String[15];
+        int i = -1;
+        for(String className : classNames){
+            i++;
+            classNamesArray[i] = className;
+        }
+        return classNamesArray;
+    }
+    
     public static String[] teacherViewClass(String classCode, String teacherID){
         ArrayList<String> classMembers = new ArrayList<>();
         ArrayList<String> studentNames = new ArrayList<>();

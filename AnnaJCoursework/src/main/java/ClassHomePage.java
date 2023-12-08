@@ -24,6 +24,34 @@ public class ClassHomePage extends javax.swing.JFrame {
         String[] students = new String[29];
         students = new DatabaseAccess().teacherViewClass(classCode, user.getUserID());
         btn1.setText(students[0]);
+        btn2.setText(students[1]);
+        btn3.setText(students[2]);
+        btn4.setText(students[3]);
+        btn5.setText(students[4]);
+        btn6.setText(students[5]);
+        btn7.setText(students[6]);
+        btn8.setText(students[7]);
+        btn9.setText(students[8]);
+        btn10.setText(students[9]);
+        btn11.setText(students[10]);
+        btn12.setText(students[11]);
+        btn13.setText(students[12]);
+        btn14.setText(students[13]);
+        btn15.setText(students[14]);
+        btn16.setText(students[15]);
+        btn17.setText(students[16]);
+        btn18.setText(students[17]);
+        btn19.setText(students[18]);
+        btn20.setText(students[19]);
+        btn21.setText(students[20]);
+        btn22.setText(students[21]);
+        btn23.setText(students[22]);
+        btn24.setText(students[23]);
+        btn25.setText(students[24]);
+        btn26.setText(students[25]);
+        btn27.setText(students[26]);
+        btn28.setText(students[27]);
+        btn29.setText(students[28]);
     }
 
     /**
@@ -140,6 +168,11 @@ public class ClassHomePage extends javax.swing.JFrame {
 
         btnBack.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         btn26.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btn26.setText("jButton14");
@@ -318,6 +351,12 @@ public class ClassHomePage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        new ClassesHome(user).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
