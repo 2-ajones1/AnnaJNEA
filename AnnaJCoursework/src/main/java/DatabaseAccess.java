@@ -335,7 +335,7 @@ public class DatabaseAccess {
         return message;
     }
 
-    public static void createClass(String name, User user) {
+    public static String createClass(String name, User user) {
         Random rand = new Random();
         String classID = "CL";
         for (int x = 0; x < 4; x++) {
@@ -359,6 +359,7 @@ public class DatabaseAccess {
         } catch (Exception e) {
             System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
         }
+        return classCode;
     }
 
     public static boolean joinClass(String classCode, User user) {
@@ -377,6 +378,24 @@ public class DatabaseAccess {
             System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
             return false;
         }
+    }
+    
+    public static String[] teacherViewClass(String classCode, String teacherID){
+        ArrayList<String> classMembers = new ArrayList<>();
+        ArrayList<String> studentNames = new ArrayList<>();
+        String[] studentArray = new String[29];
+        String classID = selectFromDatabaseString("SELECT ClassID FROM Classes WHERE ClassCode = '"+classCode+"';");
+        classMembers = selectFromDatabaseArrayList("SELECT UserID FROM ClassMembers WHERE ClassID = '"+classID+"';");
+        classMembers.remove(teacherID);
+        for(String userID : classMembers){
+            studentNames.add(selectFromDatabaseString("SELECT Username FROM Users WHERE UserID = '"+userID+"';"));
+        }
+        int i = -1;
+        for(String item : studentNames){
+            i++;
+            studentArray[i] = item;
+        }
+        return studentArray;
     }
 
     public static User logIn(String username, String password) {

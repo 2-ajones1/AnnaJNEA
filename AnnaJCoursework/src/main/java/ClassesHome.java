@@ -10,6 +10,7 @@
  */
 public class ClassesHome extends javax.swing.JFrame {
     static User user;
+    static boolean student;
 
     /**
      * Creates new form ClassesHome
@@ -17,7 +18,7 @@ public class ClassesHome extends javax.swing.JFrame {
     public ClassesHome(User user) {
         initComponents();
         this.user = user;
-        boolean student = user.isStudent();
+        this.student = user.isStudent();
         if(student == true){
             btnCreateClass.setEnabled(false);
             btnJoinClass.setEnabled(true);
@@ -42,6 +43,7 @@ public class ClassesHome extends javax.swing.JFrame {
         btnJoinClass = new javax.swing.JButton();
         btnCreateClass = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        btnView = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,6 +88,14 @@ public class ClassesHome extends javax.swing.JFrame {
             }
         });
 
+        btnView.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnView.setText("View Classes");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,7 +113,14 @@ public class ClassesHome extends javax.swing.JFrame {
                         .addComponent(btnBack)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnView)
+                .addGap(169, 169, 169))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCreateClass, btnJoinClass, btnView});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -114,10 +131,14 @@ public class ClassesHome extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnJoinClass, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCreateClass, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
+                .addComponent(btnView)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(btnBack)
                 .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCreateClass, btnJoinClass, btnView});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -136,13 +157,16 @@ public class ClassesHome extends javax.swing.JFrame {
 
     private void btnCreateClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateClassActionPerformed
         // TODO add your handling code here:
-        boolean student = user.isStudent();
         if(student){
             btnJoinClass.setEnabled(false);
         }
         new CreateNew(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCreateClassActionPerformed
+
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnViewActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,6 +207,7 @@ public class ClassesHome extends javax.swing.JFrame {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreateClass;
     private javax.swing.JButton btnJoinClass;
+    private javax.swing.JButton btnView;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblClasses;
     // End of variables declaration//GEN-END:variables
