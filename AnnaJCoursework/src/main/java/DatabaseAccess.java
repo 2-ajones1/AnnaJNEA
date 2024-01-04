@@ -52,7 +52,7 @@ public class DatabaseAccess {
     public static boolean existsInDatabase(String testString, String tableName, String columnName) {
         ArrayList<String> entries = new ArrayList<>();
         boolean exists = false;
-        entries = new DatabaseAccess().selectFromDatabaseArrayList("SELECT '" + columnName + "' FROM '" + tableName + "';");
+        entries = new DatabaseAccess().selectFromDatabaseArrayList("SELECT " + columnName + " FROM " + tableName + ";");
         if (entries.contains(testString)) {
             exists = true;
         } else {
