@@ -416,12 +416,9 @@ public class DatabaseAccess {
 
     public static User logIn(String username, String password) {
         User user = new User("", "");
-        ArrayList<String> userInfo = new ArrayList<>();
-        ResultSet rs = null;
         String DBpassword = new DatabaseAccess().selectFromDatabaseString("SELECT UserPassword FROM Users WHERE Username = '" + username + "';");
         if (DBpassword.equals(password)) {
-            userInfo = new DatabaseAccess().selectFromDatabaseArrayList("SELECT UserEmail FROM Users WHERE Username = '" + username + "';");
-            String email = userInfo.get(0);
+            String email = new DatabaseAccess().selectFromDatabaseString("SELECT UserEmail FROM Users WHERE Username = '" + username + "';");
             user = new User(username, email);
             if (new DatabaseAccess().verifyUser(email, username, password)) {
                 user = new User(username, email);
@@ -510,7 +507,7 @@ public class DatabaseAccess {
         return pageInfo;
     }
 
-    public static int[] calculate(String valueName1, String valueName2) {
+    public static int[] findPositions(String valueName1, String valueName2) {
         int[] positions = {0, 0};
         String valueID1 = new DatabaseAccess().selectFromDatabaseString("SELECT TypeID FROM ValueTypes WHERE ValueName = '" + valueName1 + "';");
         String valueID2 = new DatabaseAccess().selectFromDatabaseString("SELECT TypeID FROM ValueTypes WHERE ValueName = '" + valueName2 + "';");
@@ -526,6 +523,14 @@ public class DatabaseAccess {
         positions[0] = valuePosition1;
         positions[1] = valuePosition2;
         return positions;
+    }
+    
+    public static ArrayList<String> getConstant(String valueName){
+        //get typeid using name
+        String typeID = new DatabaseAccess().selectFromDatabaseString("SELECT TypeID FROM ValueTypes WHERE ValueName = '"+valueName+"';");
+        //get constant value & magnitude using typeid
+        ArrayList<String> constantData = selectFromDatabaseArrayList("SELECT ActualValue, SFMagnitude FROM Constants WHERE TypeID = '"+typeID+"';");
+        return constantData;
     }
 
     public static String getUnits(int[] positions, String valueName1, String valueName2) {

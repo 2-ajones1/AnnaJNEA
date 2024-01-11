@@ -1,3 +1,6 @@
+
+import java.util.ArrayList;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -42,6 +45,7 @@ public class Calculations extends javax.swing.JFrame {
         lblResultResult = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         btnCalculate = new javax.swing.JButton();
+        lblError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,6 +121,8 @@ public class Calculations extends javax.swing.JFrame {
             }
         });
 
+        lblError.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,6 +132,7 @@ public class Calculations extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(lblVal2)
@@ -153,7 +160,8 @@ public class Calculations extends javax.swing.JFrame {
                         .addComponent(lblUnits, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnBack)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(lblError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -179,7 +187,9 @@ public class Calculations extends javax.swing.JFrame {
                     .addComponent(cbVal2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfVal2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCalculate))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 166, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(lblError)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblResult)
                     .addComponent(lblResultResult)
@@ -200,12 +210,11 @@ public class Calculations extends javax.swing.JFrame {
 
     private void btnCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateActionPerformed
         // TODO add your handling code here:
+        lblError.setText("");
         lblResultResult.setText("");
         lblUnits.setText("");
         String value1 = String.valueOf(cbVal1.getSelectedItem());
         String value2 = String.valueOf(cbVal2.getSelectedItem());
-        double number1 = Double.valueOf(tfVal1.getText());
-        double number2 = Double.valueOf(tfVal2.getText());
         if (value1.contains("/")) {
             String[] parts = value1.split("/");
             value1 = parts[0];
@@ -214,7 +223,38 @@ public class Calculations extends javax.swing.JFrame {
             String[] parts = value2.split("/");
             value2 = parts[0];
         }
-        int[] positions = new DatabaseAccess().calculate(value1, value2);
+
+        int[] positions = new DatabaseAccess().findPositions(value1, value2);
+        double number1 = 0;
+        double number2 = 0;
+        if (value1.equals("-None Selected-") || value2.equals("-None selected-")) {
+            lblError.setText("Please select two values");
+        }
+        if (value1.equals("Gas Constant") || value1.equals("Planck Constant") || value1.equals("Speed of Light")) {
+            ArrayList<String> constant1 = new DatabaseAccess().getConstant(value1);
+            double actualValue = Double.valueOf(constant1.get(0));
+            System.out.println(actualValue);
+            double SFMag = Double.valueOf(constant1.get(1));
+            System.out.println(SFMag);
+            number1 = Math.pow(actualValue, SFMag);
+            System.out.println(number1);
+        }
+        if (value2.equals("Gas Constant") || value2.equals("Planck Constant") || value2.equals("Speed of Light")) {
+            ArrayList<String> constant2 = new DatabaseAccess().getConstant(value2);
+            double actualValue = Double.valueOf(constant2.get(0));
+            double SFMag = Double.valueOf(constant2.get(1));
+            number2 = Math.pow(actualValue, SFMag);
+        }
+        if (!(value1.equals("Gas Constant") || value1.equals("Planck Constant") || value1.equals("Speed of Light"))) {
+            
+            number1 = Double.valueOf(tfVal2.getText());
+        }
+        if (!(value2.equals("Gas Constant") || value2.equals("Planck Constant") || value2.equals("Speed of Light"))) {
+      
+            number2 = Double.valueOf(tfVal2.getText());
+        }
+        System.out.println(number1);
+        System.out.println(number2);
         double result = new Calculator().calculate(positions, number1, number2);
         String units = new DatabaseAccess().getUnits(positions, value1, value2);
         lblResultResult.setText(String.valueOf(result));
@@ -298,6 +338,7 @@ public class Calculations extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbVal2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblError;
     private javax.swing.JLabel lblResult;
     private javax.swing.JLabel lblResultResult;
     private javax.swing.JLabel lblUnits;
