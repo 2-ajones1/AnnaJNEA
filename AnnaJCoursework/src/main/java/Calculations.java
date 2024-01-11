@@ -229,15 +229,14 @@ public class Calculations extends javax.swing.JFrame {
         double number2 = 0;
         if (value1.equals("-None Selected-") || value2.equals("-None selected-")) {
             lblError.setText("Please select two values");
+        }else if(!((value1.equals("Gas Constant") || value1.equals("Planck Constant") || value1.equals("Speed of Light")) && tfVal1.getText().isEmpty()) || !(value2.equals("Gas Constant") || value2.equals("Planck Constant") || value2.equals("Speed of Light"))){
+            
         }
         if (value1.equals("Gas Constant") || value1.equals("Planck Constant") || value1.equals("Speed of Light")) {
             ArrayList<String> constant1 = new DatabaseAccess().getConstant(value1);
             double actualValue = Double.valueOf(constant1.get(0));
-            System.out.println(actualValue);
             double SFMag = Double.valueOf(constant1.get(1));
-            System.out.println(SFMag);
             number1 = Math.pow(actualValue, SFMag);
-            System.out.println(number1);
         }
         if (value2.equals("Gas Constant") || value2.equals("Planck Constant") || value2.equals("Speed of Light")) {
             ArrayList<String> constant2 = new DatabaseAccess().getConstant(value2);
@@ -246,15 +245,11 @@ public class Calculations extends javax.swing.JFrame {
             number2 = Math.pow(actualValue, SFMag);
         }
         if (!(value1.equals("Gas Constant") || value1.equals("Planck Constant") || value1.equals("Speed of Light"))) {
-            
             number1 = Double.valueOf(tfVal2.getText());
         }
         if (!(value2.equals("Gas Constant") || value2.equals("Planck Constant") || value2.equals("Speed of Light"))) {
-      
             number2 = Double.valueOf(tfVal2.getText());
         }
-        System.out.println(number1);
-        System.out.println(number2);
         double result = new Calculator().calculate(positions, number1, number2);
         String units = new DatabaseAccess().getUnits(positions, value1, value2);
         lblResultResult.setText(String.valueOf(result));
