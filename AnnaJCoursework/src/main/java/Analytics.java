@@ -1,4 +1,7 @@
 
+import java.util.ArrayList;
+
+
 
 
 /*
@@ -13,14 +16,39 @@
  */
 public class Analytics extends javax.swing.JFrame {
     static User user;
-
-    /**
-     * Creates new form analytics
-     */
     public Analytics(User user) {
         initComponents();
         this.user = user;
-        new DatabaseAccess().getAnalytics(user.getUserID());
+        ArrayList<String> EL = new DatabaseAccess().getAnalytics(user.getUserID(), "TO7283");
+        lblELPAval.setText(EL.get(1));
+        lblELQAval.setText(EL.get(0));
+        ArrayList<String> DF = new DatabaseAccess().getAnalytics(user.getUserID(), "TO7283");
+        lblELPAval.setText(EL.get(1));
+        lblELQAval.setText(EL.get(0));
+        ArrayList<String> ES = new DatabaseAccess().getAnalytics(user.getUserID(), "TO7283");
+        lblELPAval.setText(EL.get(1));
+        lblELQAval.setText(EL.get(0));
+        ArrayList<String> OZ = new DatabaseAccess().getAnalytics(user.getUserID(), "TO7283");
+        lblELPAval.setText(EL.get(1));
+        lblELQAval.setText(EL.get(0));
+        ArrayList<String> WM = new DatabaseAccess().getAnalytics(user.getUserID(), "TO7283");
+        lblELPAval.setText(EL.get(1));
+        lblELQAval.setText(EL.get(0));
+        ArrayList<String> CI = new DatabaseAccess().getAnalytics(user.getUserID(), "TO7283");
+        lblELPAval.setText(EL.get(1));
+        lblELQAval.setText(EL.get(0));
+        ArrayList<String> PL = new DatabaseAccess().getAnalytics(user.getUserID(), "TO7283");
+        lblELPAval.setText(EL.get(1));
+        lblELQAval.setText(EL.get(0));
+        ArrayList<String> O = new DatabaseAccess().getAnalytics(user.getUserID(), "TO7283");
+        lblELPAval.setText(EL.get(1));
+        lblELQAval.setText(EL.get(0));
+        ArrayList<String> DM = new DatabaseAccess().getAnalytics(user.getUserID(), "TO7283");
+        lblELPAval.setText(EL.get(1));
+        lblELQAval.setText(EL.get(0));
+        ArrayList<String> CD = new DatabaseAccess().getAnalytics(user.getUserID(), "TO7283");
+        lblELPAval.setText(EL.get(1));
+        lblELQAval.setText(EL.get(0));
     }
 
     /**

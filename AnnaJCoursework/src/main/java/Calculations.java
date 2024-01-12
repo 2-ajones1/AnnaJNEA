@@ -223,31 +223,26 @@ public class Calculations extends javax.swing.JFrame {
             String[] parts = value2.split("/");
             value2 = parts[0];
         }
-
         int[] positions = new DatabaseAccess().findPositions(value1, value2);
         double number1 = 0;
         double number2 = 0;
         if (value1.equals("-None Selected-") || value2.equals("-None selected-")) {
             lblError.setText("Please select two values");
-        }else if(!((value1.equals("Gas Constant") || value1.equals("Planck Constant") || value1.equals("Speed of Light")) && tfVal1.getText().isEmpty()) || !(value2.equals("Gas Constant") || value2.equals("Planck Constant") || value2.equals("Speed of Light"))){
-            
         }
         if (value1.equals("Gas Constant") || value1.equals("Planck Constant") || value1.equals("Speed of Light")) {
             ArrayList<String> constant1 = new DatabaseAccess().getConstant(value1);
             double actualValue = Double.valueOf(constant1.get(0));
             double SFMag = Double.valueOf(constant1.get(1));
             number1 = Math.pow(actualValue, SFMag);
+        }else{
+            number1 = Double.valueOf(tfVal1.getText());
         }
         if (value2.equals("Gas Constant") || value2.equals("Planck Constant") || value2.equals("Speed of Light")) {
             ArrayList<String> constant2 = new DatabaseAccess().getConstant(value2);
             double actualValue = Double.valueOf(constant2.get(0));
             double SFMag = Double.valueOf(constant2.get(1));
             number2 = Math.pow(actualValue, SFMag);
-        }
-        if (!(value1.equals("Gas Constant") || value1.equals("Planck Constant") || value1.equals("Speed of Light"))) {
-            number1 = Double.valueOf(tfVal2.getText());
-        }
-        if (!(value2.equals("Gas Constant") || value2.equals("Planck Constant") || value2.equals("Speed of Light"))) {
+        }else{
             number2 = Double.valueOf(tfVal2.getText());
         }
         double result = new Calculator().calculate(positions, number1, number2);

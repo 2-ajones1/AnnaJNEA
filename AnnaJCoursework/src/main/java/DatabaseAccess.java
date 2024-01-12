@@ -24,7 +24,10 @@ public class DatabaseAccess {
     protected static final String PASSWORD = "gS8Hd5ASpw6K2ufw";
 
     public static boolean sqlTestDBConnection() {
+        //declare return variable so only one return statement is needed
         boolean connection;
+        
+        //connect to database with correct credentials
         try ( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)) {
             System.out.println("CONNECTION MADE!");
             connection = true;
@@ -50,9 +53,14 @@ public class DatabaseAccess {
     }
 
     public static boolean existsInDatabase(String testString, String tableName, String columnName) {
+        //variables declaration
         ArrayList<String> entries = new ArrayList<>();
         boolean exists = false;
+        
+        //get all items in the column from that table and put it in a list
         entries = new DatabaseAccess().selectFromDatabaseArrayList("SELECT " + columnName + " FROM " + tableName + ";");
+        
+        //search for wanted string in the list (could use rec binary search)
         if (entries.contains(testString)) {
             exists = true;
         } else {
@@ -63,6 +71,7 @@ public class DatabaseAccess {
 
     public static boolean validatePresence(String testString) {
         boolean present = false;
+        
         if (testString.isEmpty()) {
             present = false;
         } else {
@@ -73,6 +82,7 @@ public class DatabaseAccess {
 
     public static boolean validateLength(String testString, int maxLength) {
         boolean validLength = false;
+        
         if (testString.length() <= maxLength) {
             validLength = true;
         }
@@ -80,12 +90,19 @@ public class DatabaseAccess {
     }
 
     public static ArrayList<String> selectFromDatabaseArrayList(String sqlStatement) {
+        //declare list to be used and returned
         ArrayList<String> stringList = new ArrayList<>();
+        
+        //connect to database
         try ( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)) {
             ResultSet rs = null;
+            
             try ( Statement statement = con.createStatement()) {
-                statement.execute(sqlStatement);
+                
+                //execute the given sql query and put the results in a result set
                 rs = statement.executeQuery(sqlStatement);
+                
+                //iterate through the result set and place each item in the list
                 ResultSetMetaData rsmd = rs.getMetaData();
                 int columnCount = rsmd.getColumnCount();
                 while (rs.next()) {
@@ -99,16 +116,21 @@ public class DatabaseAccess {
         } catch (Exception e) {
             System.out.println("SOMETHING WENT WRONG..." + e.getMessage());
         }
+        
         return stringList;
     }
 
     public static String selectFromDatabaseString(String sqlStatement) {
+        //declare string to be returned
         String string = "";
+        
+        //connect to database
         try ( Connection con = DriverManager.getConnection(DB_URL + DB_NAME, USERNAME, PASSWORD)) {
             ResultSet rs = null;
             try ( Statement statement = con.createStatement()) {
-                statement.execute(sqlStatement);
                 rs = statement.executeQuery(sqlStatement);
+                
+                //get the first item in the result set and place it in the return string
                 if (rs.next()) {
                     string = rs.getString(1);
                 }
@@ -152,7 +174,10 @@ public class DatabaseAccess {
 
     public static boolean verifyUser(String email, String username, String password) {
         boolean verified = false;
+        
+        //get the password matching the given username in the database
         String DBpassword = new DatabaseAccess().selectFromDatabaseString("SELECT UserPassword FROM Users WHERE UserEmail = '" + email + "' AND Username = '" + username + "';");
+        //compare it with the given password
         if (DBpassword.equals(password)) {
             verified = true;
         }
@@ -162,9 +187,13 @@ public class DatabaseAccess {
     public static boolean verifyUserEmail(User user, String password, String email) {
         boolean verified = false;
         String DBpassword = "";
+        
+        //check if the email given matches the one they logged in with
         if (email.equals(user.getEmail())) {
+            //get the password associated with the given email
             DBpassword = new DatabaseAccess().selectFromDatabaseString("SELECT UserPassword FROM Users WHERE UserEmail = '" + email + "';");
         }
+        //compare the two passwords
         if (DBpassword.equals(password)) {
             verified = true;
         }
@@ -191,11 +220,7 @@ public class DatabaseAccess {
     public static boolean getStudent(String email) {
         boolean student = false;
         String studentStr = new DatabaseAccess().selectFromDatabaseString("SELECT Student FROM Users WHERE UserEmail = '" + email + "';");
-        if (studentStr.equals("1")) {
-            student = true;
-        } else {
-            student = false;
-        }
+        student = studentStr.equals("1");
 
         return student;
     }
@@ -227,32 +252,54 @@ public class DatabaseAccess {
 
     public static ArrayList<String> getListOfTopicIDs() {
         ArrayList<String> topicIDs = new DatabaseAccess().selectFromDatabaseArrayList("SELECT TopicID FROM Topics;");
-
         return topicIDs;
     }
 
-    public static void getAnalytics(String userID) {
-        ArrayList<String> topicIDs = new ArrayList<>();
-        topicIDs = new DatabaseAccess().getListOfTopicIDs();
+    public static ArrayList<String> getAnalytics(String userID, String topicID) {
+        //variables declaration
         ArrayList<String> topicExamQIDs = new ArrayList<>();
         ArrayList<String> userExamQIDs = new ArrayList<>();
         ArrayList<String> examQIDs = new ArrayList<>();
         ArrayList<String> percentAccuracies = new ArrayList<>();
+        ArrayList<String> temp = new ArrayList<>();
+        double total = 0;
+        double mean = 0;
+        //to be returned
+        ArrayList<String> analytics = new ArrayList<>();
 
-        for (String topicID : topicIDs) {
-            topicExamQIDs = new DatabaseAccess().selectFromDatabaseArrayList("SELECT ExamQID FROM ExamQuestions WHERE TopicID = '" + topicID + "'");
-        }
+        //get all the exam questions for the topic and add them to a list
+        topicExamQIDs = new DatabaseAccess().selectFromDatabaseArrayList("SELECT ExamQID FROM ExamQuestions WHERE TopicID = '" + topicID + "';");
 
-        userExamQIDs = new DatabaseAccess().selectFromDatabaseArrayList("SELECT ExamQID FROM Analytics WHERE UserID = '" + userID + "'");
+        //get all the exam questions that the user has completed for that topic
+        userExamQIDs = new DatabaseAccess().selectFromDatabaseArrayList("SELECT ExamQID FROM Analytics WHERE UserID = '" + userID + "';");
+
+        //compare the user answered questions with the full list of questions
         for (String topicEQID : topicExamQIDs) {
             if (userExamQIDs.contains(topicEQID)) {
                 examQIDs.add(topicEQID);
-            }
-
-            for (String examQID : examQIDs) {
-                percentAccuracies = new DatabaseAccess().selectFromDatabaseArrayList("SELECT PercentAccuracy FROM Analytics WHERE ExamQID = '" + examQID + "'");
+                //examQIDs = list of completed exam question IDs for one particular topic
+                //return length of examQIDs for questions attempted
             }
         }
+        //for each examQID, get its percentage accuracy(s)
+        for (String examQID : examQIDs) {
+            temp = new DatabaseAccess().selectFromDatabaseArrayList("SELECT PercentAccuracy FROM Analytics WHERE ExamQID = '" + examQID + "'");
+            for (String percent : temp) {
+                percentAccuracies.add(percent);
+            }
+        }
+        //get mean percent accuracy
+        //add all percentages together
+        for(String percent : percentAccuracies){
+            total = total + Double.valueOf(percent);
+        }
+        //divide by total number
+        mean = total/percentAccuracies.size();
+        
+        //return analytics with its first index being questions attempted and second being the mean accuracy
+        analytics.add(String.valueOf(examQIDs.size()));
+        analytics.add(String.valueOf(mean));
+        return analytics;
     }
 
     public static ArrayList<String> getExamQuestion(int modifier, User user) {
