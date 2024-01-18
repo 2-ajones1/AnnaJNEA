@@ -33,12 +33,8 @@ public class Periodicity extends javax.swing.JFrame {
         cbPos = new javax.swing.JComboBox<>();
         lblIon = new javax.swing.JLabel();
         cbNeg = new javax.swing.JComboBox<>();
-        lblProperty = new javax.swing.JLabel();
-        cbProperty = new javax.swing.JComboBox<>();
         lblFormulae = new javax.swing.JLabel();
-        lblTrend = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
-        lblTrendText = new javax.swing.JLabel();
         btnCalculate = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblFormula = new javax.swing.JLabel();
@@ -83,17 +79,8 @@ public class Periodicity extends javax.swing.JFrame {
             }
         });
 
-        lblProperty.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lblProperty.setText("Property:");
-
-        cbProperty.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbProperty.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Melting Point", "Boiling Point", "Density", "Electronegativity", "Reactivity", "Solubility" }));
-
         lblFormulae.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lblFormulae.setText("How to work out formulae:");
-
-        lblTrend.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lblTrend.setText("Trend:");
 
         btnBack.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnBack.setText("Back");
@@ -102,9 +89,6 @@ public class Periodicity extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
-
-        lblTrendText.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblTrendText.setText("<trend>");
 
         btnCalculate.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnCalculate.setText("Calculate");
@@ -141,37 +125,28 @@ public class Periodicity extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblFormulae)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblFormulae)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblGroup, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblIon, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblProperty, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(cbPos, 0, 235, Short.MAX_VALUE)
-                                            .addComponent(cbNeg, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(cbProperty, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                                .addGap(197, 197, 197)
-                                .addComponent(btnCalculate))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblFormula)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                                .addComponent(jLabel3))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnBack)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1))
-                        .addContainerGap())
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblGroup, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblIon, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cbPos, 0, 235, Short.MAX_VALUE)
+                                    .addComponent(cbNeg, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(197, 197, 197)
+                        .addComponent(btnCalculate))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTrendText)
-                            .addComponent(lblTrend))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblFormula)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnBack)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,25 +161,17 @@ public class Periodicity extends javax.swing.JFrame {
                     .addComponent(lblIon)
                     .addComponent(cbNeg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCalculate))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblProperty)
-                    .addComponent(cbProperty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(lblFormula))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(lblFormulae)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblTrend)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblTrendText)
-                .addGap(18, 18, 18)
+                .addGap(58, 58, 58)
                 .addComponent(btnBack)
                 .addContainerGap())
         );
@@ -286,7 +253,6 @@ public class Periodicity extends javax.swing.JFrame {
     private javax.swing.JButton btnCalculate;
     private javax.swing.JComboBox<String> cbNeg;
     private javax.swing.JComboBox<String> cbPos;
-    private javax.swing.JComboBox<String> cbProperty;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
@@ -295,9 +261,6 @@ public class Periodicity extends javax.swing.JFrame {
     private javax.swing.JLabel lblFormulae;
     private javax.swing.JLabel lblGroup;
     private javax.swing.JLabel lblIon;
-    private javax.swing.JLabel lblProperty;
-    private javax.swing.JLabel lblTrend;
-    private javax.swing.JLabel lblTrendText;
     private javax.swing.JTextArea taExplanation;
     // End of variables declaration//GEN-END:variables
 }

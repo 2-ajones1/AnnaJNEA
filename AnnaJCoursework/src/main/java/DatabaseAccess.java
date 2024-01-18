@@ -556,6 +556,7 @@ public class DatabaseAccess {
 
     public static int[] findPositions(String valueName1, String valueName2) {
         int[] positions = {0, 0};
+        
         String valueID1 = new DatabaseAccess().selectFromDatabaseString("SELECT TypeID FROM ValueTypes WHERE ValueName = '" + valueName1 + "';");
         String valueID2 = new DatabaseAccess().selectFromDatabaseString("SELECT TypeID FROM ValueTypes WHERE ValueName = '" + valueName2 + "';");
         String equationID = new DatabaseAccess().selectFromDatabaseString("SELECT EquationID FROM Equations WHERE \n"
